@@ -1,0 +1,38 @@
+## bitte aktuell halten.
+
+#############################################
+# Projektstand
+
+
+
+
+
+
+########################
+# offene Punkte
+
+> gemeinsame MLab MongoDB
+> REST API mit Routes
+	.> POST (Anlegen Mitarbeiter)
+	.> PUT (Update Zeitkonto)
+	.> PUT (Update MA-Informationen)
+	.> GET (Statistiken -> Graph.js)
+	.> DELETE
+> Frontend Login -> Weiterleitung Rollenspezifisches Frontend
+> Frontend Mitarbeiter
+> Frontend Management
+
+> Anbindung der Facebook API (Login-Status Mitarbeiter)
+> Einbindung Chart.js 
+
+
+
+#######################
+# Datenbankfelder
+
+> MA-Name
+> MA-Passwort
+> MA-Rolle (Management/User)
+> MA-Token (zur Authentifizerung - alternativ über das Frontend lösbar)
+> MA-Sollstunden
+> MA-Zeitkonto (evtl. bestehend aus 'Haben' und separater Anwesenheitszeit, beginnend beim Einstempeln)
