@@ -10,7 +10,7 @@ Mgr -> 7 Routen (+add, +modify, +delete, + stats, +get, +export, + genchart , ..
 
 
 ## bitte aktuell halten.
-
+Please sign i
 #############################################
 # Projektstand
 
@@ -37,7 +37,6 @@ Mgr -> 7 Routen (+add, +modify, +delete, + stats, +get, +export, + genchart , ..
 > Einbindung Chart.js 
 
 
-
 #######################
 # Datenbankfelder
 
@@ -47,3 +46,9 @@ Mgr -> 7 Routen (+add, +modify, +delete, + stats, +get, +export, + genchart , ..
 > MA-Token (zur Authentifizerung - alternativ über das Frontend lösbar)
 > MA-Sollstunden
 > MA-Zeitkonto (evtl. bestehend aus 'Haben' und separater Anwesenheitszeit, beginnend beim Einstempeln)
+> MA Urlaubstage
+> MA Krankheitstage
+> Stempelzeit
+    - IN/OUT (Serverzeit)
+> Kernarbeitszeit
+    - IN/OUT (Serverzeit)
