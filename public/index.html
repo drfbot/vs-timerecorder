@@ -6,11 +6,15 @@
 <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
 <link rel="stylesheet" type="text/css" href="stylesheets/bootstrap.css">
 
-<script type="text/javascripts" src="javascripts/jquery3.1-1.js"></script>
-<script type="text/javascripts" src="javascripts/bootstrap.min.js"></script>
+<script type="text/javascript" src="javascripts/jquery3.1-1.js"></script>
+<script type="text/javascript" src="javascripts/bootstrap.min.js"></script>
 <!--Chart-Library-->
 <!--<script type="text/javascripts" src="/javascripts/fusioncharts.js"></script>-->
-<script type="text/javascripts" src="javascripts/fusioncharts-jquery-plugin.js"></script>
+<script type="text/javascript" src="javascripts/fusioncharts-jquery-plugin.js"></script>
+
+<script type="text/javascript">
+    function action(){$("#resulttablediv").append('<p> klasse! <p>')};
+</script>
 
 <body>
 <div class="page-header">
@@ -20,43 +24,12 @@
 </div>
 <div class="container">
     <div class="col-lg-9">
-        <div class="navbar-form navbar-left">
-            <label for="search-2">search by ID:</label>
-            <input type="search" name="search-2" id="search-2" placeholder="Namen eingeben">
-            <button type="submit" id="searchSubmit">search</button>
-        </div>
-        <div class="navbar-form navbar-left">
-                <label for="search-2">delete by ID:</label>
-                <input type="search" name="delete-2" id="delete-2" placeholder="ID">
-                <button type="submit" id="deleteSubmit">Delete</button>
-         </div>
-
 
         <div class="table table-responsive" id="resulttablediv">
         </div>
 
-
         <div class="col-lg-9">
-            <form class="form-horizontal">
-                <div>
-                    <label>Forename</label>
-                    <input type=text id="vorname" class="form-control"><br>
-                </div>
-                <div>
-                    <label>Place of Birth</label>
-                    <input type=text id="pob" class="form-control"><br>
-                </div>
-                <div>
-                    <label>Date of Birth</label>
-                    <input class="form-control" type=text id="dob"><br>
-                </div>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" value="true" id="checkbox">Favourite
-                    </label>
-                </div>
-                <button type="button" id="fave" onclick="register()"> Register</button>
-            </form>
+          <button class="btn btn-default btn-success" onclick="action()">YippehButton</button>
         </div>
     </div> <!-- col lg6-->
 </div>
