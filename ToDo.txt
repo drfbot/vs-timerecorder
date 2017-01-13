@@ -1,3 +1,14 @@
+﻿######## TODO - 13.01.2017 ####################
+FireBase API -> BenutzerAuth (SSO -Facebook, Twitter)
+Flipcharts - Syntax und Funktionsweise zur Erstellung von Grafikern ermitteln.
+Einzelne HTML-Seiten generieren
+REST:
+
+MA -> 4 Routen
+Mgr -> 7 Routen (+add, +modify, +delete, + stats, +get, +export, + genchart , ....., .....)
+
+
+
 ## bitte aktuell halten.
 
 #############################################
