@@ -1,0 +1,26 @@
+==============
+Seitenanfang jeder Seite im public/content Ordner
+=======
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head xmlns="http://www.w3.org/1999/html">
+    <meta charset="UTF-8">
+    <title>Amazing JavaScript</title>
+</head>
+<link rel="stylesheet" type="text/css" href="../stylesheets/style.css">
+<link rel="stylesheet" type="text/css" href="../stylesheets/bootstrap.css">
+
+<script type="text/javascript" src="../javascripts/jquery3.1-1.js"></script>
+<script type="text/javascript" src="../javascripts/bootstrap.js"></script>
+<script type="text/javascript" src="../javascripts/functions.js"></script>
+<script type="text/javascript" scr="../javascripts/fusioncharts-jquery-plugin.js"></script>
+<body>
+
+
+<div class="page-header">
+    <h1>Manage your time-account
+        <small>The time recording system</small>
+    </h1>
+</div>

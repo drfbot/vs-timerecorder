@@ -8,3 +8,19 @@ window.onload=function(){
     }
 
 }
+
+
+
+//=======================================
+// Graphs
+//=======================================
+
+function somethingtoChartContainer() {
+    $("#chart-container").insertFusionCharts({
+        type: "column2d",
+        width: "400",
+        height: "350",
+        dataFormat: "JSONURL",
+        dataSource: "../data/data.json" //später dynamische JSON-Abfrage
+    });
+};

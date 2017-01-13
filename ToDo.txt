@@ -7,7 +7,14 @@ REST:
 MA -> 4 Routen
 Mgr -> 7 Routen (+add, +modify, +delete, + stats, +get, +export, + genchart , ....., .....)
 
+###################
+# nachzuinstallierende Module
 
+npm install
+
+isotope-layout,
+fusionstarts,
+fusionmaps
 
 ## bitte aktuell halten.
 Please sign i
@@ -22,19 +29,18 @@ Please sign i
 ########################
 # offene Punkte
 
-> gemeinsame MLab MongoDB
 > REST API mit Routes
 	.> POST (Anlegen Mitarbeiter)
 	.> PUT (Update Zeitkonto)
 	.> PUT (Update MA-Informationen)
 	.> GET (Statistiken -> Graph.js)
 	.> DELETE
+
 > Frontend Login -> Weiterleitung Rollenspezifisches Frontend
-> Frontend Mitarbeiter
+> Frontend Mitarbeiter ?
 > Frontend Management
 
-> Anbindung der Facebook API (Login-Status Mitarbeiter)
-> Einbindung Chart.js 
+> Anbindung der Firebase und FusionChart API
 
 
 #######################
