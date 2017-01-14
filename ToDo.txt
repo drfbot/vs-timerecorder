@@ -13,8 +13,7 @@ Mgr -> 7 Routen (+add, +modify, +delete, + stats, +get, +export, + genchart , ..
 npm install
 
 isotope-layout,
-fusionstarts,
-fusionmaps
+
 
 ## bitte aktuell halten.
 Please sign i

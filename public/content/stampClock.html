@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="de">
-
+<head xmlns="http://www.w3.org/1999/html">
+    <meta charset="UTF-8">
+    <title>Amazing JavaScript</title>
+</head>
 <link rel="stylesheet" type="text/css" href="../stylesheets/style.css">
 <link rel="stylesheet" type="text/css" href="../stylesheets/bootstrap.css">
 
-<script type="text/javascripts" src="../javascripts/jquery3.1-1.js"></script>
-<script type="text/javascripts" src="../javascripts/bootstrap.js"></script>
+<script type="text/javascript" src="../javascripts/jquery3.1-1.js"></script>
+<script type="text/javascript" src="../javascripts/bootstrap.js"></script>
+<script type="text/javascript" src="../javascripts/functions.js"></script>
 
 <body>
 
@@ -13,18 +17,38 @@
     <h1>Manage your time-account
         <small>The time recording system</small>
     </h1>
+        <span class="col-md-4 col-md-offset-8" id="date_time"></span>
+        <script type="text/javascript">window.onload = date_time('date_time');</script>
+
 </div>
 
 <div class="container">
 
-        <div class="row col-lg-9" allign="center">
-          <button class="btn btn-default btn-success" onclick="action()">Kommen/Gehen</button>
+
+
+    <div class="row">
+        <div class="col-md-8 bg-success col-md-offset-4" id="greetingLabel">
+            <script>
+                datetoday = new Date();
+                timenow=datetoday.getTime();
+                datetoday.setTime(timenow);
+                thehour = datetoday.getHours();
+                if (thehour > 18) display = "Abend";
+                else if (thehour >12) display = "Mittag";
+                else display = "Morgen";
+                var greeting = ("Guten " + display + "!");
+                document.write("<h2>"+ greeting+ "</h2>");
+                //  End -->
+            </script>
         </div>
+    </div>
+
+    <div class="col-md-5 col-md-offset-3">
+        <button class="btn btn-lg btn-success" id="stamp" onclick="action()">Kommen/Gehen</button>
+    </div>
 
 </div> <!-- /container btn-block-->
 
 
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script src="./assets/js/ie10-viewport-bug-workaround.js"></script>
 </body>
 </html>
