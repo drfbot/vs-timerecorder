@@ -1,9 +1,9 @@
 ﻿######## TODO - 13.01.2017 ####################
 FireBase API -> BenutzerAuth (SSO -Facebook, Twitter)
-Flipcharts - Syntax und Funktionsweise zur Erstellung von Grafikern ermitteln.
+(check) Flipcharts - Syntax und Funktionsweise zur Erstellung von Grafikern ermitteln.
 Einzelne HTML-Seiten generieren
-REST:
 
+REST:
 MA -> 4 Routen
 Mgr -> 7 Routen (+add, +modify, +delete, + stats, +get, +export, + genchart , ....., .....)
 
@@ -16,12 +16,8 @@ isotope-layout,
 
 
 ## bitte aktuell halten.
-Please sign i
 #############################################
 # Projektstand
-
-
-
 
 
 
@@ -36,10 +32,10 @@ Please sign i
 	.> DELETE
 
 > Frontend Login -> Weiterleitung Rollenspezifisches Frontend
-> Frontend Mitarbeiter ?
-> Frontend Management
+> Frontend Mitarbeiter (done)?
+> Frontend Management  (done)?
 
-> Anbindung der Firebase und FusionChart API
+> Anbindung der Firebase API
 
 
 #######################
