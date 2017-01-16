@@ -15,6 +15,7 @@ npm install
 isotope-layout,
 firebase --save
 firebaseui --save
+-g firebase-tools
 
 
 ## bitte aktuell halten.
