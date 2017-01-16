@@ -9,8 +9,22 @@ window.onload=function(){
 
 
 
+
 //=======================================
-// Graphs
+// REST interaction
+//=======================================
+
+function logout() {
+    //DB interaktion Session stop.
+}
+
+function login(){
+    //DB interaktion Session start + timestamp
+}
+
+
+//=======================================
+// Charts
 //=======================================
 
 function somethingtoChartContainer() {
@@ -23,9 +37,10 @@ function somethingtoChartContainer() {
     });
 }
 
-function logout() {
-    //DB interaktion Session stop.
-}
+
+//=======================================
+// Frontend Designkrams
+//=======================================
 
 
 function date_time(id)
