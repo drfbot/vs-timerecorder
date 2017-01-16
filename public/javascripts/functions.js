@@ -23,10 +23,8 @@ function somethingtoChartContainer() {
     });
 }
 
-function logout(){
-    $("#logout").click(function () {
-        alert("LogOut means to clock out! \n do you want to continue?");
-    })
+function logout() {
+    //DB interaktion Session stop.
 }
 
 
