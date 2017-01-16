@@ -13,6 +13,8 @@ Mgr -> 7 Routen (+add, +modify, +delete, + stats, +get, +export, + genchart , ..
 npm install
 
 isotope-layout,
+firebase --save
+firebaseui --save
 
 
 ## bitte aktuell halten.
