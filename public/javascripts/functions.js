@@ -1,9 +1,3 @@
-/**
- * Created by zoosle on 13.01.17.
- */
-
-
-
 
 window.onload=function(){
 
@@ -28,6 +22,13 @@ function somethingtoChartContainer() {
         dataSource: "../data/data.json" //später dynamische JSON-Abfrage
     });
 }
+
+function logout(){
+    $("#logout").click(function () {
+        alert("LogOut means to clock out! \n do you want to continue?");
+    })
+}
+
 
 function date_time(id)
 {
