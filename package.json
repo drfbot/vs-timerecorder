@@ -12,6 +12,10 @@
     "express": "~4.14.0",
     "jade": "~1.11.0",
     "morgan": "~1.7.0",
-    "serve-favicon": "~2.3.0"
+    "serve-favicon": "~2.3.0",
+    "fusioncharts":"~3.11.3",
+    "fusionmaps":"~3.11.3",
+    "isotope-layout":"~1.0.0",
+    "window":"1.0.0"
   }
 }

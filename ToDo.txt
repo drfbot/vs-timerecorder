@@ -1,11 +1,28 @@
 ﻿######## TODO - 13.01.2017 ####################
-FireBase API -> BenutzerAuth (SSO -Facebook, Twitter)
-(check) Flipcharts - Syntax und Funktionsweise zur Erstellung von Grafikern ermitteln.
-Einzelne HTML-Seiten generieren
+( ) BenutzerAuth, evtl Facebook, Twitter API
+(Ⲭ) Fusioncharts - Syntax und Funktionsweise zur Erstellung von Grafikern ermitteln.
+( ) Einzelne HTML-Seiten generieren
+( ) Anbindung der Mongoose API
+( ) REST API mit Routes
+    ( ) MA -> 4 Routen
+        ( )	.> POST (Passwortcheck, Weiterleitung)
+        ( )	.> GET (Statistiken -> Graph.js)
+        ...was vergessen?
 
-REST:
-MA -> 4 Routen
-Mgr -> 7 Routen (+add, +modify, +delete, + stats, +get, +export, + genchart , ....., .....)
+
+    ( ) MGR -> 7 Routen (+add, +modify, +delete, + stats, +get, +export, + genchart , ....., .....)
+        ( )	.> POST (Anlegen Mitarbeiter)
+        ( )	.> PUT (Update Zeitkonto)
+        ( )	.> PUT (Update MA-Informationen)
+        ( )	.> GET (Statistiken -> Graph.js)
+        ( )	.> DELETE
+
+(Ⲭ) > Frontend Login
+    ( ) -> Weiterleitung Rollenspezifisches Frontend
+(Ⲭ) > Frontend Mitarbeiter
+(Ⲭ) > Frontend Management (teilweise done)
+
+
 
 ###################
 # nachzuinstallierende Module
@@ -13,34 +30,9 @@ Mgr -> 7 Routen (+add, +modify, +delete, + stats, +get, +export, + genchart , ..
 npm install
 
 isotope-layout,
-firebase --save
-firebaseui --save
--g firebase-tools
-
 
 
 ## bitte aktuell halten.
-#############################################
-# Projektstand
-
-
-
-########################
-# offene Punkte
-
-> REST API mit Routes
-	.> POST (Anlegen Mitarbeiter)
-	.> PUT (Update Zeitkonto)
-	.> PUT (Update MA-Informationen)
-	.> GET (Statistiken -> Graph.js)
-	.> DELETE
-
-> Frontend Login -> Weiterleitung Rollenspezifisches Frontend
-> Frontend Mitarbeiter (done)?
-> Frontend Management  (done)?
-
-> Anbindung der Firebase API
-
 
 #######################
 # Datenbankfelder
@@ -53,7 +45,16 @@ firebaseui --save
 > MA-Zeitkonto (evtl. bestehend aus 'Haben' und separater Anwesenheitszeit, beginnend beim Einstempeln)
 > MA Urlaubstage
 > MA Krankheitstage
-> Stempelzeit
-    - IN/OUT (Serverzeit)
+-----optional hier:-----------
+> Kernarbeitszeit            |
+    - IN/OUT (Serverzeit)    |
+---                          |
+                             |
+Zeiten:                      |
+> MA-id                      |
+> Stempelzeit                |
+    - IN/OUT (Serverzeit)    |
+---- optional hier: ---    <-
 > Kernarbeitszeit
     - IN/OUT (Serverzeit)
+----

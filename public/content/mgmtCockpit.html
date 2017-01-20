@@ -14,8 +14,7 @@
 
 <script type="text/javascript">
 
-    $(document).ready(function()
-    {
+    $(document).ready(function () {
         var revenueChart = new FusionCharts({
             "type": "bar2d",
             "renderAt": "chart-container",
@@ -88,24 +87,22 @@
 </script>
 
 <body>
+<div class="page-header">
+    <h1>Manage your time-account
+        <small>The time recording system</small>
+        <button class="btn btn-default glyphicon glyphicon-user col-md-offset-3" id="logout" data-toggle="modal"
+                data-target="#myModal"> LogOut
+        </button>
+    </h1>
 
-
-
-
-<div class="container">
-    <div class="page-header">
-        <h1>Manage your time-account
-            <small>The time recording system</small>
-            <button class="btn btn-default glyphicon glyphicon-user col-md-offset-3" id="logout" data-toggle="modal" data-target="#myModal"> LogOut </button>
-        </h1>
-    </div>
 
     <!--MODAL LogoutWarning-->
     <div class="modal fade" tabindex="-1" role="dialog" id="myModal">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title">Willst du dich wirklich ausloggen?</h4>
                 </div>
                 <div class="modal-body alert-danger">
@@ -121,143 +118,171 @@
 
     <!--Tab-Menü-->
     <div class="row">
-            <ul class="nav nav-tabs">
-            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
-            <li role="presentation"><a href="#urlaubszeiten" aria-controls="urlaubszeiten" role="tab" data-toggle="tab">Urlaubszeiten</a></li>
-            <li role="presentation"><a href="#mitarbeiter" aria-controls="mitarbeiter" role="tab" data-toggle="tab">Mitarbeiter</a></li>
+        <ul class="nav nav-tabs">
+            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a>
+            </li>
+            <li role="presentation"><a href="#urlaubszeiten" aria-controls="urlaubszeiten" role="tab" data-toggle="tab">Urlaubszeiten</a>
+            </li>
+            <li role="presentation"><a href="#mitarbeiter" aria-controls="mitarbeiter" role="tab" data-toggle="tab">Mitarbeiter</a>
+            </li>
         </ul>
     </div>
 
     <!--Beginn Tab-Seiten-->
     <div class="tab-content">
 
+        <div class="container">
 
-        <!--TabPanel1-->
-        <div role="tabpanel" class="tab-pane active" id="home">
-            <div class="row">
+            <!--TabPanel1-->
+            <div role="tabpanel" class="tab-pane active" id="home">
+                <div class="row">
 
-                <div class="col-md-5">
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id
-                    </p>
+                    <div class="col-md-5">
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
+                            Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
+                            ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla
+                            consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget,
+                            arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu
+                            pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean
+                            vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac,
+                            enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra
+                            nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel
+                            augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus,
+                            tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed
+                            ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id
+                        </p>
+                    </div>
+
+                    <div class="col-md-4 col-md-offset-1" id="chart-container">
+                        <!--tabelle-->
+                    </div>
                 </div>
 
-                <div class="col-md-4 col-md-offset-1" id="chart-container">
-                    <!--tabelle-->
-                </div>
-            </div>
+                <div class="row">
 
-            <div class="row">
+                    <div class="col-md-4">
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
+                            Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
+                            ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla
+                            consequat massa quis enim. Donec pede justo, fringilla vel,drerit id
+                        </p>
+                    </div>
 
-                <div class="col-md-4">
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel,drerit id
-                    </p>
-                </div>
+                    <div class="col-lg-6 col-md-offset-2" id="chart-container2">
+                        <script type="text/javascript">
 
-                <div class="col-lg-6 col-md-offset-2" id="chart-container2">
-                    <script type="text/javascript">
+                            $(document).ready(function () {
+                                var revenueChart = new FusionCharts({
+                                    "type": "pie3d",
+                                    "renderAt": "chart-container",
+                                    "width": "500",
+                                    "height": "200",
+                                    "dataFormat": "json",
+                                    "dataSource": {
+                                        "chart": {
+                                            "caption": "Monthly core working time",
+                                            "subCaption": "Harolds Inc.",
+                                            "xAxisName": "Month",
+                                            "yAxisName": "Revenues (In USD)",
+                                            "theme": "zune"
+                                        },
+                                        "data": [
+                                            {
+                                                "label": "Jan",
+                                                "value": "420000"
+                                            },
+                                            {
+                                                "label": "Feb",
+                                                "value": "810000"
+                                            },
+                                            {
+                                                "label": "Mar",
+                                                "value": "720000"
+                                            },
+                                            {
+                                                "label": "Apr",
+                                                "value": "550000"
+                                            },
+                                            {
+                                                "label": "May",
+                                                "value": "910000"
+                                            },
+                                            {
+                                                "label": "Jun",
+                                                "value": "510000"
+                                            },
+                                            {
+                                                "label": "Jul",
+                                                "value": "680000"
+                                            },
+                                            {
+                                                "label": "Aug",
+                                                "value": "620000"
+                                            },
+                                            {
+                                                "label": "Sep",
+                                                "value": "610000"
+                                            },
+                                            {
+                                                "label": "Oct",
+                                                "value": "490000"
+                                            },
+                                            {
+                                                "label": "Nov",
+                                                "value": "900000"
+                                            },
+                                            {
+                                                "label": "Dec",
+                                                "value": "730000"
+                                            }
+                                        ]
+                                    }
+                                });
 
-                        $(document).ready(function()
-                        {
-                            var revenueChart = new FusionCharts({
-                                "type": "pie3d",
-                                "renderAt": "chart-container",
-                                "width": "500",
-                                "height": "200",
-                                "dataFormat": "json",
-                                "dataSource": {
-                                    "chart": {
-                                        "caption": "Monthly core working time",
-                                        "subCaption": "Harolds Inc.",
-                                        "xAxisName": "Month",
-                                        "yAxisName": "Revenues (In USD)",
-                                        "theme": "zune"
-                                    },
-                                    "data": [
-                                        {
-                                            "label": "Jan",
-                                            "value": "420000"
-                                        },
-                                        {
-                                            "label": "Feb",
-                                            "value": "810000"
-                                        },
-                                        {
-                                            "label": "Mar",
-                                            "value": "720000"
-                                        },
-                                        {
-                                            "label": "Apr",
-                                            "value": "550000"
-                                        },
-                                        {
-                                            "label": "May",
-                                            "value": "910000"
-                                        },
-                                        {
-                                            "label": "Jun",
-                                            "value": "510000"
-                                        },
-                                        {
-                                            "label": "Jul",
-                                            "value": "680000"
-                                        },
-                                        {
-                                            "label": "Aug",
-                                            "value": "620000"
-                                        },
-                                        {
-                                            "label": "Sep",
-                                            "value": "610000"
-                                        },
-                                        {
-                                            "label": "Oct",
-                                            "value": "490000"
-                                        },
-                                        {
-                                            "label": "Nov",
-                                            "value": "900000"
-                                        },
-                                        {
-                                            "label": "Dec",
-                                            "value": "730000"
-                                        }
-                                    ]
-                                }
+                                revenueChart.render("chart-container2");
                             });
+                        </script>
+                    </div><!--chart-container-->
+                </div><!--row-->
 
-                            revenueChart.render("chart-container2");
-                        });
-                    </script>
-                </div><!--chart-container-->
-            </div><!--row-->
+            </div><!--Endetabpanel1-->
 
-        </div><!--Endetabpanel1-->
-
-        <!--BeginnTabPanel2-->
-        <div role="tabpanel" class="tab-pane" id="urlaubszeiten">
-        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc, </p>
-        </div><!--EndeTabPanel2-->
-
-
-        <!--BeginnTabPanel3-->
-        <div role="tabpanel" class="tab-pane" id="mitarbeiter">
-            <!-- isotope-content-->
-
-
-
-
-        </div><!--Endetabpanel1-->
-        </div><!--tabcontent-->
-
-
-    </div>
+            <!--BeginnTabPanel2-->
+            <div role="tabpanel" class="tab-pane" id="urlaubszeiten">
+                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean
+                    massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec
+                    quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.
+                    Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut,
+                    imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt.
+                    Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula,
+                    porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis,
+                    feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean
+                    imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam
+                    rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet
+                    adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem.
+                    Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam
+                    quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet
+                    nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus
+                    nunc, </p>
+            </div><!--EndeTabPanel2-->
 
 
+            <!--BeginnTabPanel3-->
+            <div role="tabpanel" class="tab-pane" id="mitarbeiter">
+                <!-- isotope-content-->
 
 
+            </div><!--Endetabpanel1-->
 
+
+        </div><!--container-->
+
+    </div><!--tabcontent-->
+
+
+</div>
 
 
 </body>
