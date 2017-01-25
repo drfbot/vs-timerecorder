@@ -8,7 +8,14 @@ window.onload=function(){
 };
 
 
-
+//===========================
+// Forms
+//=============================
+$("body").find(".btn").each(function(){
+    $(this).bind('click', function(){
+        $("input[name=view-opt-bt-group-value]").val(this.value);
+    });
+}); 
 
 //=======================================
 // REST interaction

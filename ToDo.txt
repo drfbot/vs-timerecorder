@@ -37,6 +37,7 @@ npm install
 
 isotope-layout,
 mongoose
+bcrypt
 
 
 ## bitte aktuell halten.

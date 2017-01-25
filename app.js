@@ -7,8 +7,7 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var fusioncharts = require('fusioncharts');
-var firebase = require('firebase');
-//var firebaseui = require('firebaseui');
+
 
 
 

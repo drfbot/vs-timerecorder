@@ -24,12 +24,12 @@
     <div class="col-lg-9">
 
         <div class="container">
-            <!-- DB-Check als action -->
-			<div class="row">
-                <form class="form-signin col-lg-4 col-lg-offset-3" action="/users/check/" method='post'>
+
+            <div class="row">
+                <form class="form-signin col-lg-4 col-lg-offset-3" action="/auth" method="post">
                     <h2 class="form-signin-heading">Please sign in</h2>
-                    <label for="email" class="sr-only">Name</label>
-                    <input type="text" name="email" id="email" class="form-control" placeholder="Email" required autofocus>
+                    <label for="name" class="sr-only">Name</label>
+                    <input type="text" name="name" id="name" class="form-control" placeholder="Name" required autofocus>
                     <label for="password" class="sr-only">Password</label>
                     <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
                     <div class="checkbox">
