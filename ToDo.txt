@@ -23,6 +23,12 @@
 (Ⲭ) > Frontend Management (teilweise done)
 
 
+#######################
+
+Baris arbeitet an:
+Esma arbeitet an:
+Fabi arbeitet an: Signin/Authentifizierung
+Moe arbeitet an:
 
 ###################
 # nachzuinstallierende Module
@@ -30,6 +36,7 @@
 npm install
 
 isotope-layout,
+mongoose
 
 
 ## bitte aktuell halten.
