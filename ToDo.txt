@@ -1,4 +1,4 @@
-﻿######## TODO - 13.01.2017 ####################
+﻿﻿######## TODO - 13.01.2017 ####################
 ( ) BenutzerAuth, evtl Facebook, Twitter API
 (Ⲭ) Fusioncharts - Syntax und Funktionsweise zur Erstellung von Grafikern ermitteln.
 ( ) Einzelne HTML-Seiten generieren

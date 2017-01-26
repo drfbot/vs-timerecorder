@@ -94,28 +94,29 @@
                 data-target="#myModal"> LogOut
         </button>
     </h1>
+</div>
 
+<!--MODAL LogoutWarning-->
+<div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Willst du dich wirklich ausloggen?</h4>
+            </div>
+            <div class="modal-body alert-danger">
+                <h5>LogOut bedeutet auszustempeln!&hellip;</h5>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">zurück</button>
+                <button type="button" class="btn btn-danger" onclick="logout()">LogOut</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
-    <!--MODAL LogoutWarning-->
-    <div class="modal fade" tabindex="-1" role="dialog" id="myModal">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Willst du dich wirklich ausloggen?</h4>
-                </div>
-                <div class="modal-body alert-danger">
-                    <h5>LogOut bedeutet auszustempeln!&hellip;</h5>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">zurück</button>
-                    <button type="button" class="btn btn-danger" onclick="logout()">LogOut</button>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
-
+<div class="container">
     <!--Tab-Menü-->
     <div class="row">
         <ul class="nav nav-tabs">
@@ -133,10 +134,8 @@
     <!--Beginn Tab-Seiten-->
     <div class="tab-content">
 
-        <div class="container">
-
             <!--TabPanel1-->
-            <div role="tabpanel" class="tab-pane fade in active" id="home">
+            <div role="tabpanel" class="tab-pane active" id="home">
                 <div class="row">
 
                     <div class="col-md-5">
@@ -252,7 +251,7 @@
             </div><!--Endetabpanel1-->
 
             <!--BeginnTabPanel2-->
-            <div role="tabpanel" class="tab-pane fade" id="urlaubszeiten">
+            <div role="tabpanel" class="tab-pane" id="urlaubszeiten">
                 <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean
                     massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec
                     quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.
@@ -272,16 +271,14 @@
 
 
             <!--BeginnTabPanel3-->
-            <div role="tabpanel" class="tab-pane fade" id="mitarbeiter">
+            <div role="tabpanel" class="tab-pane" id="mitarbeiter">
                 <!-- isotope-content-->
 
 
             </div><!--Endetabpanel1-->
 
             <!--BeginnTabPanel4-->
-
-
-            <div role="tabpanel" class="tab-pane fade" id="create">
+            <div role="tabpanel" class="tab-pane" id="create">
                 <!-- create-worker-->
                 <!-- DB-Check als action -->
                 <!-- create user als action -->
@@ -311,20 +308,34 @@
                         <label for="password" class="sr-only">Password</label>
                         <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
                         <br>
-                        <label for="role" class="sr-only">Rolle</label>
-                        <input type="text" name="role" id="role" class="form-control" placeholder="Rolle" required autofocus>
+                        <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-primary active">
+                                <input type="radio" autocomplete="off" value="0" checked> Manager
+                            </label>
+                            <label class="btn btn-primary">
+                                <input type="radio" autocomplete="off" value="1"> Worker
+                            </label>
+                        </div>
                         <!--sessionToken wird bei anderer Route gesetzt-->
-<!--""""""""""""NOCH NICHT AUSWERTBAR"""""""""""""-->
-                        <div class="row pull-left">
-                            <div class="btn-group view-opt-btn-group" data-toggle="buttons-radio">
-                                <button type="button" class="btn" value="0"><i class="icon-th-list"></i>Befristet</button>
-                                <button type="button" class="btn" value="1"><i class="icon-th-list"></i>Unbefristet</button>
-                                <input type="hidden" name="view-opt-bt-group-value" value="0">
-                            </div>
+                        <br>
+                        <br>
+                        <div class="btn-group" data-toggle="buttons">
+                            <label class="radio-inline"><input type="radio" autocomplete="off" value="0"> unbefristet</label>
+                            <label class="radio-inline"><input type="radio" autocomplete="off" value="1" data-toggle="collapse" data-target="#end"> befristet</label>
                         </div>
                         <br>
+                        <br>
+                        <div class="btn-group" data-toggle="buttons">
+                        <label for="begin">Begin</label>
+                        <input type="text" name="begin" id="begin" class="form-control" placeholder="DD.MM.YYYY" required>
+
+                        <div class="collapse" id="end">
+                            <label for="end">End</label>
+                            <input type="date" name="end" id="date" class="form-control" placeholder="DD.MM.YYYY">
+                        </div>
+                        </div>
                         <!--debit/credit wird automatisch über andere Route gesetzt (Zeiten)-->
-                        <button class="btn btn-lg btn-primary" type="submit">Anlegen</button>
+                        <button class="btn btn-lg btn-success" type="submit">Anlegen</button>
                     </form>
                 </div>
 
@@ -333,10 +344,7 @@
 
 
 
-        </div><!--container-->
-
     </div><!--tabcontent-->
-
 
 </div>
 
