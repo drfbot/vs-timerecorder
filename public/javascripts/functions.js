@@ -79,3 +79,18 @@ function date_time(id)
     setTimeout('date_time("'+id+'");','1000');
     return true;
 }
+
+/* FUNKTION ZUM AUSLESEN DER PARAMETER IN DER URL
+*/
+function getParameterByName(name, url) {
+    if (!url) {
+      url = window.location.href;
+    }
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
