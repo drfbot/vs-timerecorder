@@ -37,8 +37,8 @@ npm install
 
 isotope-layout,
 mongoose
-bcrypt
-
+bcryptjs
+fusioncharts
 
 ## bitte aktuell halten.
 
