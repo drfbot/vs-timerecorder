@@ -94,3 +94,31 @@ function getParameterByName(name, url) {
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
+
+//=======================================
+// ISOTOPE - Dynamische Generiuerung der Elemente
+//=======================================
+
+/*function getMaData(){
+	alert("GET MA LISTE");
+	var container = document.getElementById("isotope-grid");
+	
+	
+	container.innerHTML = container.innerHTML + '<div class="element-item male "><h3 class="name">Detelf Dumm</h3></div>';
+	container.innerHTML = container.innerHTML + '<div class="element-item male "><h3 class="name">Angelina Fotze</h3></div>';
+	container.innerHTML = container.innerHTML + '<div class="element-item male "><h3 class="name">Angelina Fotze</h3></div>';
+	container.innerHTML = container.innerHTML + '<div class="element-item male "><h3 class="name">Angelina Fotze</h3></div>';
+	container.innerHTML = container.innerHTML + '<script src="../javascripts/jquery.min.js" type="text/javascript"></script>';
+	container.innerHTML = container.innerHTML + '<script src="../javascripts/isotope.pkgd.js" type="text/javascript"></script>';
+	container.innerHTML = container.innerHTML + '<script src="../javascripts/isotope.js" type="text/javascript"></script>';
+	//initIsotope();
+	
+	
+}
+*/
+function initIsotope(){
+	
+	//<script src="../javascripts/jquery.min.js" type="text/javascript"></script>
+//<script src="../javascripts/isotope.pkgd.js" type="text/javascript"></script>
+//<script src="../javascripts/isotope.js" type="text/javascript"></script>
+}

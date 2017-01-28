@@ -126,7 +126,7 @@
             </li>
             <li role="presentation"><a href="#urlaubszeiten" aria-controls="urlaubszeiten" role="tab" data-toggle="tab">Urlaubszeiten</a>
             </li>
-            <li role="presentation"><a href="#mitarbeiter" aria-controls="mitarbeiter" role="tab" data-toggle="tab">Mitarbeiter</a>
+            <li role="presentation"><a href="#mitarbeiter" aria-controls="mitarbeiter" role="tab" data-toggle="tab" onclick="getMaData()">Mitarbeiter</a>
             </li>
             <li role="presentation"><a href="#create" aria-controls="create" role="tab" data-toggle="tab">Anlegen</a>
             </li>
@@ -275,131 +275,36 @@
             <!--BeginnTabPanel3-->
             <div role="tabpanel" class="tab-pane" id="mitarbeiter">
                 <!-- isotope-content-->
-                <h1>Isotope - sorting</h1>
 
-<div class="button-group sort-by-button-group">
-  <button class="button is-checked" data-sort-value="original-order">original order</button>
-  <button class="button" data-sort-value="name">name</button>
-  <button class="button" data-sort-value="symbol">symbol</button>
-  <button class="button" data-sort-value="number">number</button>
-  <button class="button" data-sort-value="weight">weight</button>
-  <button class="button" data-sort-value="category">category</button>
+
+<h1>Isotope - Filter</h1>
+<div id="filters" class="button-group">  <button class="button is-checked" data-filter="*">show all</button>
+  <button class="button" data-filter=".male">Männlich</button>
+  <button class="button" data-filter=".female">Weiblich</button>
+  <button class="button" data-filter=".alkali, .alkaline-earth">alkali and alkaline-earth</button>
+  <button class="button" data-filter=":not(.transition)">not transition</button>
+  <button class="button" data-filter=".metal:not(.transition)">metal but not transition</button>
+  <button class="button" data-filter="numberGreaterThan50">number > 50</button>
+  <button class="button" data-filter="ium">name ends with &ndash;ium</button>
 </div>
 
+		<h1>Isotope - Sorting</h1>		
+<div id="sorts" class="button-group">  <button class="button is-checked" data-sort-by="original-order">original order</button>
+  <button class="button" data-sort-by="name">name</button> 
+</div>
+
+
 <div class="grid" id="isotope-grid">
-  <div class="element-item transition metal " data-category="transition">
-    <h3 class="name">Mercury</h3>
-    <p class="symbol">Hg</p>
-    <p class="number">80</p>
-    <p class="weight">200.59</p>
-  </div>
-  <div class="element-item metalloid " data-category="metalloid">
-    <h3 class="name">Tellurium</h3>
-    <p class="symbol">Te</p>
-    <p class="number">52</p>
-    <p class="weight">127.6</p>
-  </div>
-  <div class="element-item post-transition metal " data-category="post-transition">
-    <h3 class="name">Bismuth</h3>
-    <p class="symbol">Bi</p>
-    <p class="number">83</p>
-    <p class="weight">208.980</p>
-  </div>
-  <div class="element-item post-transition metal " data-category="post-transition">
-    <h3 class="name">Lead</h3>
-    <p class="symbol">Pb</p>
-    <p class="number">82</p>
-    <p class="weight">207.2</p>
-  </div>
-  <div class="element-item transition metal " data-category="transition">
-    <h3 class="name">Gold</h3>
-    <p class="symbol">Au</p>
-    <p class="number">79</p>
-    <p class="weight">196.967</p>
-  </div>
-  <div class="element-item alkali metal " data-category="alkali">
-    <h3 class="name">Potassium</h3>
-    <p class="symbol">K</p>
-    <p class="number">19</p>
-    <p class="weight">39.0983</p>
-  </div>
-  <div class="element-item alkali metal " data-category="alkali">
-    <h3 class="name">Sodium</h3>
-    <p class="symbol">Na</p>
-    <p class="number">11</p>
-    <p class="weight">22.99</p>
-  </div>
-  <div class="element-item transition metal " data-category="transition">
-    <h3 class="name">Cadmium</h3>
-    <p class="symbol">Cd</p>
-    <p class="number">48</p>
-    <p class="weight">112.411</p>
-  </div>
-  <div class="element-item alkaline-earth metal " data-category="alkaline-earth">
-    <h3 class="name">Calcium</h3>
-    <p class="symbol">Ca</p>
-    <p class="number">20</p>
-    <p class="weight">40.078</p>
-  </div>
-  <div class="element-item transition metal " data-category="transition">
-    <h3 class="name">Rhenium</h3>
-    <p class="symbol">Re</p>
-    <p class="number">75</p>
-    <p class="weight">186.207</p>
-  </div>
-  <div class="element-item post-transition metal " data-category="post-transition">
-    <h3 class="name">Thallium</h3>
-    <p class="symbol">Tl</p>
-    <p class="number">81</p>
-    <p class="weight">204.383</p>
-  </div>
-  <div class="element-item metalloid " data-category="metalloid">
-    <h3 class="name">Antimony</h3>
-    <p class="symbol">Sb</p>
-    <p class="number">51</p>
-    <p class="weight">121.76</p>
-  </div>
-  <div class="element-item transition metal " data-category="transition">
-    <h3 class="name">Cobalt</h3>
-    <p class="symbol">Co</p>
-    <p class="number">27</p>
-    <p class="weight">58.933</p>
-  </div>
-  <div class="element-item lanthanoid metal inner-transition " data-category="lanthanoid">
-    <h3 class="name">Ytterbium</h3>
-    <p class="symbol">Yb</p>
-    <p class="number">70</p>
-    <p class="weight">173.054</p>
-  </div>
-  <div class="element-item noble-gas nonmetal " data-category="noble-gas">
-    <h3 class="name">Argon</h3>
-    <p class="symbol">Ar</p>
-    <p class="number">18</p>
-    <p class="weight">39.948</p>
-  </div>
-  <div class="element-item diatomic nonmetal " data-category="diatomic">
-    <h3 class="name">Nitrogen</h3>
-    <p class="symbol">N</p>
-    <p class="number">7</p>
-    <p class="weight">14.007</p>
-  </div>
-  <div class="element-item actinoid metal inner-transition " data-category="actinoid">
-    <h3 class="name">Uranium</h3>
-    <p class="symbol">U</p>
-    <p class="number">92</p>
-    <p class="weight">238.029</p>
-  </div>
-  <div class="element-item actinoid metal inner-transition " data-category="actinoid">
-    <h3 class="name">Plutonium</h3>
-    <p class="symbol">Pu</p>
-    <p class="number">94</p>
-    <p class="weight">(244)</p>
-  </div>
-  </div>
+
+<!-- ISOTOPES DIV -> Dynamically add Workers --> 
+ 
+</div>
+
+  
+ 
 <script src="../javascripts/jquery.min.js" type="text/javascript"></script>
 <script src="../javascripts/isotope.pkgd.js" type="text/javascript"></script>
 <script src="../javascripts/isotope.js" type="text/javascript"></script>
-
 
             </div><!--Endetabpanel1-->
 
@@ -421,37 +326,75 @@
                 , illness: Number
                 });-->
                 <div class="row">
-                    <form class="form-signin col-lg-4 col-lg-offset-3" action="/users/create" method="post">
-                        <h2 class="form-signin-heading">Add new Worker</h2>
+                    <form class="form-signin col-lg-4 col-lg-offset-3" action="/worker/add" method="post">
+                        <h2 class="form-signin-heading">Mitarbeiter anlegen</h2>
                         <label for="username" class="sr-only">User Name</label>
                         <input type="text" name="username" id="username" class="form-control" placeholder="Username" required autofocus>
                         <!--besser: Username autogenerieren -> connection DB -->
                         <br>
-                        <label for="vorname" class="sr-only">Vorname</label>
-                        <input type="text" name="vorname" id="vorname" class="form-control" placeholder="Vorname" required>
-                        <label for="name" class="sr-only">Nachname</label>
+                        <label for="name" class="sr-only">name</label>
                         <input type="text" name="name" id="name" class="form-control" placeholder="Name" required autofocus>
-                        <label for="password" class="sr-only">Password</label>
+						<label for="password" class="sr-only">Password</label>
                         <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
                         <br>
-                        <div class="btn-group" data-toggle="buttons">
+						<div class="btn-group" data-toggle="buttons">
                             <label class="btn btn-primary active">
-                                <input type="radio" autocomplete="off" value="0" checked> Manager
+                                <input type="radio" autocomplete="off" name="gender" id="gender" value="male" checked> m&auml;nnlich
                             </label>
                             <label class="btn btn-primary">
-                                <input type="radio" autocomplete="off" value="1"> Worker
+                                <input type="radio" autocomplete="off" name="gender" id="gender" value="female"> weiblich
+                            </label>
+                        </div>
+						<br>
+                        <div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-primary active">
+                                <input type="radio" autocomplete="off" name="role" id="role" value="manager" checked> Manager
+                            </label>
+                            <label class="btn btn-primary">
+                                <input type="radio" autocomplete="off" name="role" id="role" value="worker"> Worker
                             </label>
                         </div>
                         <!--sessionToken wird bei anderer Route gesetzt-->
                         <br>
+						<br>
+						<label for="portrait" class="sr-only">Portrait</label>
+                        <input type="text" name="portrait" id="portrait" class="form-control" placeholder="BildPfad" required autofocus>
+						<br>
+						<div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-primary active">
+                                <input type="radio" autocomplete="off" name="contract" id="contract" value="befristet" checked> befristet
+                            </label>
+                            <label class="btn btn-primary">
+                                <input type="radio" autocomplete="off" name="contract" id="contract" value="unbefristet"> unbefristet
+                            </label>
+                        </div>
+						<br>
+						<label for="startDate" class="sr-only">Start Date</label>
+                        <input type="text" name="startDate" id="startDate" class="form-control" placeholder="Start Datum" required autofocus>
+						<label for="endDate" class="sr-only">End Date</label>
+                        <input type="text" name="endDate" id="endDate" class="form-control" placeholder="End Datum" required autofocus>
+						<label for="debit" class="sr-only">Debit</label>
+                        <input type="text" name="debit" id="debit" class="form-control" placeholder="Arbeitsstunden Woche" required autofocus>
+						<!-- CREDITS ZU BEGINN 0 -->
+						<label for="vacation" class="sr-only">Vacation</label>
+                        <input type="text" name="vacation" id="vacation" class="form-control" placeholder="Urlaubstage" required autofocus>
+						<!-- VacationState ZU BEGINN 0 -->
+						<!-- ILLNESS ZU BEGINN 0 -->
+						<!-- ILLNESSSTATE ZU BEGINN 0 -->
+						<label for="street" class="sr-only">Street</label>
+                        <input type="text" name="street" id="street" class="form-control" placeholder="Strasse" required autofocus>
+						<label for="postalcode" class="sr-only">Postal Code</label>
+                        <input type="text" name="postalcode" id="postalcode" class="form-control" placeholder="PLZ" required autofocus>
+						<label for="city" class="sr-only">City</label>
+                        <input type="text" name="city" id="city" class="form-control" placeholder="Stadt" required autofocus>
+						<label for="phone" class="sr-only">Phone</label>
+                        <input type="text" name="phone" id="phone" class="form-control" placeholder="Rufnummer" required autofocus>
                         <br>
-                        <div class="btn-group" data-toggle="buttons">
+                        <!--<div class="btn-group" data-toggle="buttons">
                             <label class="radio-inline"><input type="radio" name="btn" autocomplete="off" value="0" data-toggle="dismiss" data-target="#end"> unbefristet</label>
                             <label class="radio-inline"><input type="radio" name="btn" autocomplete="off" value="1" data-toggle="collapse" data-target="#end"> befristet</label>
-                        </div>
-                        <br>
-                        <br>
-                        <div class="btn-group" data-toggle="buttons">
+                        </div>-->
+                        <!--<div class="btn-group" data-toggle="buttons">
                         <label for="begin">Begin</label>
                         <input type="text" name="begin" id="begin" class="form-control" placeholder="DD.MM.YYYY" required>
 
@@ -460,6 +403,7 @@
                             <input type="date" name="end" id="date" class="form-control" placeholder="DD.MM.YYYY">
                         </div>
                         </div>
+						-->
                         <!--debit/credit wird automatisch über andere Route gesetzt (Zeiten)-->
                         <button class="btn btn-lg btn-success" type="submit">Anlegen</button>
                     </form>

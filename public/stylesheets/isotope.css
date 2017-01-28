@@ -75,8 +75,8 @@ body {
 .element-item {
   position: relative;
   float: left;
-  width: 100px;
-  height: 100px;
+  width: 138px;
+  height: 177px;
   margin: 5px;
   padding: 10px;
   background: #888;
@@ -90,13 +90,12 @@ body {
 
 .element-item .name {
   position: absolute;
-
   left: 10px;
   top: 60px;
   text-transform: none;
   letter-spacing: 0;
   font-size: 12px;
-  font-weight: normal;
+  font-weight: bold;
 }
 
 .element-item .symbol {

@@ -11,14 +11,23 @@ var workerSchema = new mongoose.Schema({
     username: String
     , name: String
     , passwd: String
-    , role: Number
+	, gender: String
+    , role: String
     , portrait: String
     , sessionToken: String
     , contract: String
+	, startDate: Number
+	, endDate: Number
     , debit: Number
     , credit: Number
     , vacation: Number
+	, vacationState: Boolean
     , illness: Number
+	, illnessState: Boolean
+	, street: String
+	, postalcode: Number
+	, city: String
+	, phone: String
 } );//{collection:'Worker'}
 
 

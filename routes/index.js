@@ -4,6 +4,7 @@ var mongoose = require('mongoose');
 var mongodb =  require('mongodb');
 var Schema = mongoose.Schema;
 var Worker = require('./mongooseSchema');
+var bcrypt = require('bcryptjs');
 
 //Mongoose Connection
 mongoose.connect('mongodb://vs-mongo:vs-mongo@ds163677.mlab.com:63677/vs-nodejs-db'); // connect to our mongoDB database (uncomment after you enter in your own credentials in config/db.js)
@@ -21,55 +22,14 @@ router.get('/', function(req, res, next) {
     var Worker = mongoose.model('Worker', eventSchema);
 });
 
-/* ### EDIT MOE ###
 
 router.use(function(req, res, next) {
     console.log('Es passiert etwas...');
     next();
 });
 
-router.get('/', function(req,res){
-	
-	res.json({message: 'Willkommen zur API!'})
-	
-})
-
-
- === END MOE === */
-
-router.post('/auth', function (req, res) {
-        Worker.findOne({'username':req.body.username}, function (err, obj) {
-            if (err || !obj) {
-                res.send(500);
-                console.log("error: " + err + ", obj: " + obj);
-                return;
-            }
-
-            console.log("obj: " + obj);
-
-
-            Worker.checkPassword(req.body.password,obj.passwd, function (err,pwBool) {
-                if (err || !obj) {
-                    res.send(500);
-                    console.log("error: " + err + ", obj: " + obj);
-                    return;
-                }
-
-                if(pwBool){
-                    console.log('successful authentication');
-                    res.redirect('/content/mgmtCockpit.html');
-                }
-                else{
-                    console.log('unsuccessful authentication');
-                    res.write('not! res');
-                }
-            });
-
-//ende! -> 'res' wurde bereits angesprochen.
-        });
-    });
-
-/*  #### EDIT MOE ####
+router.route('/auth')
+  
 .post(function(req,res){
 
 Worker.findOne({username: req.body.username},function(err, workers){
@@ -87,10 +47,7 @@ Worker.findOne({username: req.body.username},function(err, workers){
 		});
 	});
 	});
-	==== END EDIT MOE ====*/ 
-	
-	
-/* #### EDIT MOE ####
+
 router.route('/workers')
 
 .get(function(req,res){
@@ -104,6 +61,54 @@ router.route('/workers')
 	
 });
 
-	====END EDIT MOE ====*/	
+router.route('/worker/add')
+
+.post(function(req,res){
 	
+	var bcrypt = require('bcryptjs');
+    var salt = bcrypt.genSalt(10, function(err, salt) {
+        if(err){
+            console.log('salt '+ salt);
+            console.log('problem salting the hash ' + req.body.password);
+        }
+    });
+
+    var hash = bcrypt.hashSync(req.body.password,salt);
+	
+	
+	var newWorker = new Worker();
+	newWorker.username = req.body.username;
+	newWorker.name = req.body.name;
+	newWorker.passwd = hash;
+	newWorker.gender = req.body.gender;
+	newWorker.role = req.body.role;
+	// IF no Picture use Gender Picture
+	newWorker.portrait = req.body.portrait;
+	// newWorker.sessionToken = req.body.;
+	newWorker.contract = req.body.contract;
+	newWorker.startDate = req.body.startDate;
+	newWorker.endDate = req.body.endDate;
+	newWorker.debit = req.body.debit;
+	newWorker.credit = 0;
+	newWorker.vacation = req.body.vacation;
+	newWorker.vacationState = false;
+	newWorker.illness = 0;
+	newWorker.illnessState  = false;
+	newWorker.street = req.body.street;
+	newWorker.postalcode = req.body.postalcode;
+	newWorker.city = req.body.city;
+	newWorker.phone = req.body.phone;
+
+	newWorker.save(function (err){
+		
+	if(err){
+		res.send(err);
+	}
+		 res.json({ message: 'Mitarbeiter angelegt!' });
+	});
+	
+});
+
+
+
 module.exports = router;
