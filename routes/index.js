@@ -4,6 +4,8 @@ var mongoose = require('mongoose');
 var mongodb =  require('mongodb');
 var Schema = mongoose.Schema;
 var Worker = require('./mongooseSchema');
+var Timer = require('./mongooseSchema');
+
 var bcrypt = require('bcryptjs');
 
 //Mongoose Connection
@@ -22,30 +24,27 @@ router.get('/', function(req, res, next) {
     var Worker = mongoose.model('Worker', eventSchema);
 });
 
-
 router.use(function(req, res, next) {
     console.log('Es passiert etwas...');
     next();
 });
 
 router.route('/auth')
-  
-.post(function(req,res){
+    .post(function(req,res){
 
-    Worker.findOne({username: req.body.username},function(err, workers){
+        Worker.findOne({username: req.body.username},function(err, workers){
 
-        		if(err)res.send(err);
-        		console.log(workers);
+            if(err)res.send(err);
+            console.log(workers);
 
-        		bcrypt.compare(req.body.password, workers.passwd, function(err, pwBool) {
-               		if(err)
-               		res.send(err);
-               if(pwBool)
-               	res.redirect("../content/stampClock.html?MaName=" + workers.name+'&username='+workers.username);
-                });
-        	});
-    	});
-
+            bcrypt.compare(req.body.password, workers.passwd, function(err, pwBool) {
+                if(err)
+                    res.send(err);
+                if(pwBool)
+                    res.redirect("../content/stampClock.html?MaName=" + workers.name+'&username='+workers.username);
+            });
+        });
+    });
 
         /*if(pwBool){
             console.log("successful authentication");
@@ -55,8 +54,6 @@ router.route('/auth')
         });
     });
 });*/
-
-
 
 router.route('/workers')
 
@@ -74,26 +71,71 @@ router.route('/workers')
 router.route('/checkin')
 
 .get( function (req,res) {
+    //stampclock
+    console.log("checkin: "+ req.param('username'));
 
-    //
-
-    Worker.findOne({'username': req.params('username')}, function (err, obj) {
+    Worker.findOne({'username': req.param('username')}, function (err, obj) {
         if (err || !obj) {
-            res.send(500);
+            res.sendStatus(500);
             console.log("error: " + err + ", obj: " + obj);
             return;
         }
 
         if (obj.loginstate) {
             //logout
+            Timer.find({username:obj.username}, function (err,res) {
 
+                if(res.clockOut==null){
+
+                    //set clockout
+                    console.log("set clockout!");
+                    res.clockOut=Date.now();
+
+                    //update workerflag
+                    console.log("set workerflag");
+                    Worker.findOneAndUpdate({username:obj.username}, {loginstate:false} , {upsert: true}, function (err, callback) {
+                        if (err || !callback) {
+                            return res.sendStatus(500);
+
+                        } else {
+                            console.log("updateCallback " + callback);
+                            res.write('Have a nice day!');//somewhere
+                        }
+                    });
+                }
+            })
         }
         else {
             //login timestamp
-
             console.log('checkin active - user timestamp renewal');
-            var query = {"username": req.params('username')};
-            console.log("username " + req.params('username'));
+            //new TimeSchema
+            var newTimer = new Timer();
+            newTimer.MA_id=obj.username;
+            newTimer.clockIn=Date.now();
+            newTimer.clockOut=null;
+            newTimer.save(function (err){
+
+                if(err){
+                    res.send(err);
+                }
+            });
+            //set loginstate
+            console.log("set loginstate -> true");
+
+            Worker.findOneAndUpdate({username:obj.username}, {loginstate:true} , {upsert: true}, function (err, callback) {
+                if (err || !callback) {
+                    return res.sendStatus(500);
+
+                } else {
+                    console.log("updateCallback " + callback);
+                    res.redirect('/content/mgmtCockpit.html');
+                }
+            });
+
+            
+
+
+            /*var query = {"username": req.params('username')};
             var insert = {"timestamp": Date.now()};
             console.log("timestamp " + Date.now());
 
@@ -105,7 +147,7 @@ router.route('/checkin')
                     console.log("updateCallback " + callback);
                     res.write('Have a nice day!');//somewhere
                 }
-            });
+            });*/
         }
     });
 });

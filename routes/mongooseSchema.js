@@ -60,7 +60,7 @@ module.exports.checkPassword = function(pass, hash, callback){
         console.log('pass2'+ pass +'  hash2 '+hash);
         if(err) {
             console.log("error checking password "+err);
-        };
+        }
         callback(res);
     });
 };
@@ -74,13 +74,12 @@ module.exports.checkPassword = function(pass, hash, callback){
 
 
 
-/*
+
 //temporary data for time calculaiton purposes
 var timeSchema = new mongoose.Schema({
     MA_id: String
-    , sessionToken: String //possibly redundant <> id
     , clockIn: Number
     , clockOut: Number
 });
 
-var Timer = module.exports = mongoose.model('Timer', timeSchema);*/
+var Timer = module.exports = mongoose.model('Timer', timeSchema);
