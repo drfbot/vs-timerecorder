@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 var mongodb =  require('mongodb');
 var Schema = mongoose.Schema;
 var Worker = require('./mongooseSchema');
-var Timer = require('./mongooseSchema');
+var Timer = require('./mongooseTimeSchema');
 
 var bcrypt = require('bcryptjs');
 
