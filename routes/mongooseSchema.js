@@ -11,7 +11,9 @@ var workerSchema = new mongoose.Schema({
     username: String
     , name: String
     , passwd: String
-	, gender: String
+    , timestamp: Number
+    , loginstate: Boolean
+    , gender: String
     , role: String
     , portrait: String
     , sessionToken: String
@@ -63,7 +65,9 @@ module.exports.checkPassword = function(pass, hash, callback){
     console.log('checkPaswort - mongooseSchema');
     bcrypt.compare(pass, hash, function(err, res) {
         console.log('pass '+ pass +'  hash: '+hash);
-        if(err) throw err;
+        if(err) {
+            console.log("error checking password "+err);
+        };
         callback(null, res);
     });
 };
