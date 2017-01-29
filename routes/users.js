@@ -38,7 +38,7 @@ router.route('/worker/add')
         newWorker.name = req.body.name;
         newWorker.passwd = hash;
         newWorker.gender = req.body.gender;
-        newWorker.timestamp="";//empty
+        newWorker.timestamp= null;//empty
         newWorker.loginstate=false;
         newWorker.role = req.body.role;
         // IF no Picture use Gender Picture
@@ -63,7 +63,7 @@ router.route('/worker/add')
             if(err){
                 res.send(err);
             }
-            res.redirect('/content/mgmtCockpit.html#create')
+            res.redirect('/content/mgmtCockpit.html');
         });
 });
 

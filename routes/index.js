@@ -32,26 +32,31 @@ router.route('/auth')
   
 .post(function(req,res){
 
-Worker.findOne({username: req.body.username},function(err, workers){
-    if(err){
-        res.send(err);
-    }
+    Worker.findOne({username: req.body.username},function(err, workers){
 
-		console.log("worker: "+workers);
+        		if(err)res.send(err);
+        		console.log(workers);
 
-    Worker.checkPassword(req.body.password,workers.passwd, function (err, pwBool) {
-        if(err){
-            res.sendStatus(500);
-            return;
-        }
-        if(pwBool){
+        		bcrypt.compare(req.body.password, workers.passwd, function(err, pwBool) {
+               		if(err)
+               		res.send(err);
+               if(pwBool)
+               	res.redirect("../content/stampClock.html?MaName=" + workers.name+'&username='+workers.username);
+                });
+        	});
+    	});
+
+
+        /*if(pwBool){
             console.log("successful authentication");
-            res.redirect('/content/mgmtCockpit.html?MaName='+workers.name+'&username='+workers.username);
+            res.redirect('../content/mgmtCockpit.html?MaName='+workers.name);
         }
         else res.write('NOT a valid user');
         });
     });
-});
+});*/
+
+
 
 router.route('/workers')
 
@@ -69,6 +74,8 @@ router.route('/workers')
 router.route('/checkin')
 
 .get( function (req,res) {
+
+    //
 
     Worker.findOne({'username': req.params('username')}, function (err, obj) {
         if (err || !obj) {

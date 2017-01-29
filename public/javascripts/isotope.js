@@ -78,9 +78,7 @@ function getMaData() {
   // insert new elements
   $grid.isotope( 'insert', $items ); 
   }
-  
-
- Fetched_User_Data = true;
+   Fetched_User_Data = true;
 	}
 };
 

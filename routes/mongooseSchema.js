@@ -38,11 +38,15 @@ var Worker = module.exports = mongoose.model('Worker', workerSchema);
 
 module.exports.getWorkerByUsername = function(usernameVal, callback){
     console.log("get worker by username");
-    callback(null, Worker.findOne ({'username':usernameVal},function(err,worker){
+    Worker.findOne ({username:usernameVal},function(err,worker){
         if(err) throw err;
-        return worker;
-    }));
-    console.log("callback :"+ callback);
+        else{
+            console.log("callback :"+ callback);
+            callback(null ,worker);
+        }
+    });
+
+
 };
 
 module.exports.getWorkerById = function(id, callback){
@@ -51,12 +55,13 @@ module.exports.getWorkerById = function(id, callback){
 
 module.exports.checkPassword = function(pass, hash, callback){
     console.log('checkPaswort - mongooseSchema');
+    console.log('pass1 '+ pass +'  hash1: '+hash);
     bcrypt.compare(pass, hash, function(err, res) {
-        console.log('pass '+ pass +'  hash: '+hash);
+        console.log('pass2'+ pass +'  hash2 '+hash);
         if(err) {
             console.log("error checking password "+err);
         };
-        callback(null, res);
+        callback(res);
     });
 };
 
@@ -69,7 +74,7 @@ module.exports.checkPassword = function(pass, hash, callback){
 
 
 
-
+/*
 //temporary data for time calculaiton purposes
 var timeSchema = new mongoose.Schema({
     MA_id: String
@@ -78,4 +83,4 @@ var timeSchema = new mongoose.Schema({
     , clockOut: Number
 });
 
-var Timer = module.exports = mongoose.model('Timer', timeSchema);
+var Timer = module.exports = mongoose.model('Timer', timeSchema);*/
