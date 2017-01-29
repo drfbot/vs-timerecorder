@@ -75,13 +75,12 @@ body {
 .element-item {
   position: relative;
   float: left;
-  width: 138px;
-  height: 177px;
+  width: 150px;
+  height: 300px;
   margin: 5px;
   padding: 10px;
-  background: #888;
-  color: #262524;
-}
+  background-color: #28F;
+  }
 
 .element-item > * {
   margin: 0;
@@ -91,21 +90,67 @@ body {
 .element-item .name {
   position: absolute;
   left: 10px;
-  top: 60px;
+  top: 194px;
   text-transform: none;
   letter-spacing: 0;
-  font-size: 12px;
+  font-size: 1.2em;
+  color: white;
   font-weight: bold;
+  
 }
 
-.element-item .symbol {
+.element-item .gender {
   position: absolute;
   left: 10px;
-  top: 0px;
-  font-size: 42px;
+  bottom: 70px;
+  font-size: 1.0em;
   font-weight: bold;
   color: white;
 }
+
+.element-item .role {
+  position: absolute;
+  left: 10px;
+  bottom: 58px;
+  font-size: 1.0em;
+  font-weight: bold;
+  color: white;
+}
+
+.element-item .contract {
+  position: absolute;
+  left: 10px;
+  bottom: 46px;
+  font-size: 1.0em;
+  font-weight: bold;
+  color: white;
+}
+
+.element-item .credit {
+  position: absolute;
+  left: 10px;
+  bottom:34px;
+  font-size: 1.0em;
+  font-weight: bold;
+  color: white;
+}
+
+.element-item .vacationState {
+  position: absolute;
+  left: 10px;
+  bottom: 22px;
+  font-size: 1.0em;
+  font-weight: bold;
+  color: white;
+}
+  .element-item .illnessState {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  font-size: 1.0em;
+  font-weight: bold;
+  color: white;
+  }
 
 .element-item .number {
   position: absolute;

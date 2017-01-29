@@ -11,7 +11,9 @@ var workerSchema = new mongoose.Schema({
     username: String
     , name: String
     , passwd: String
-	, gender: String
+    , timestamp: Number
+    , loginstate: Boolean
+    , gender: String
     , role: String
     , portrait: String
     , sessionToken: String

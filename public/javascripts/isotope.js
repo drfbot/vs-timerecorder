@@ -73,7 +73,7 @@ function getMaData() {
   //  inputData.length --->>>>> Anzahl der ELemente des zurückgegebenen JSON Arrays
   
   for (var k = 0; k < inputData.length; k++) {
-	   var $items = getItemElement(inputData[k].name,inputData[k].gender,inputData[k].role);
+	   var $items = getItemElement(inputData[k].name,inputData[k].gender,inputData[k].role,inputData[k].contract,inputData[k].credit,inputData[k].vacationState,inputData[k].illnessState);
 	   console.log(inputData[k])
   // insert new elements
   $grid.isotope( 'insert', $items ); 
@@ -85,16 +85,17 @@ function getMaData() {
 };
 
 // make <div class="grid-item grid-item--width# grid-item--height#" />
-function getItemElement(name, gender, role) {
-  var $item = $('<div class="element-item" style="background-image: url(../media/ma_avatars/user1.jpg); background-size: 138px 177px; background-repeat: no-repeat;"></div>');
-  var genderClass = gender;
-  var roleClass = role;
-  $item.addClass( genderClass );
-  $item.addClass( roleClass );
+function getItemElement(name, gender, role, contract,credit, vacationState, illnessState) {
+  var $item = $('<div class="element-item" style="background-image: url(../media/ma_avatars/user1.jpg); background-size: 150px 193px; background-repeat: no-repeat;"></div>');
+    $item.addClass( gender );
   // add random number
   $item.append( '<p class="name">' + name + '</p>' );
   $item.append( '<p class="gender">' + gender + '</p>' );
-  $item.append( '<p class="gender">' + role + '</p>' );
+  $item.append( '<p class="role">' + role + '</p>' );
+  $item.append( '<p class="contract">' + contract + '</p>' );
+  $item.append( '<p class="credit">' + credit + '</p>' );
+  $item.append( '<p class="vacationState">' + vacationState + '</p>' );
+  $item.append( '<p class="illnessState">' + illnessState + '</p>' );
   
   return $item;
 }
