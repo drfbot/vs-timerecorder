@@ -78,6 +78,7 @@ router.route('/checkin')
     console.log("checkin: "+ req.param('username'));
 
     Worker.findOne({'username': req.param('username')}, function (err, obj) {
+
         if (err || !obj) {
             res.sendStatus(500);
             console.log("error: " + err + ", obj: " + obj);
@@ -86,27 +87,56 @@ router.route('/checkin')
 
         if (obj.loginstate) {
             //logout
-            Timer.find({username:obj.username}, function (err,res) {
+          Timer.find({MA_id:obj.username}, function (err,ts) {
 
-                if(res.clockOut==null){
+                console.dir("pre res: " +ts);
+                console.log(" clockIN log: "+ts[0].clockOut);
+                console.log(" clockOUT log: "+ts[0].clockIn);
+                //var set =JSON.parse(ts["clockOut"]);
 
-                    //set clockout
-                    console.log("set clockout!");
-                    res.clockOut=Date.now();
 
-                    //update workerflag
-                    console.log("set workerflag");
-                    Worker.findOneAndUpdate({username:obj.username}, {loginstate:false} , {upsert: true}, function (err, callback) {
-                        if (err || !callback) {
-                            return res.sendStatus(500);
+                for(var i=0;i<ts.length;i++){
+                    console.log("in for");
+                    if(ts[i].clockOut===0){
+                        //set clockout
+                        var clockOutTime=Date.now();
+                        var calcWorkingTimeDay = ((clockOutTime-ts[i].clockIn)*1000*60*60); //seconds/*minutes/*hours => in hours
+                        var objCredit = obj.credit += calcWorkingTimeDay;
+                        console.log('objcredit: '+obj.credit);
+                        console.log('calcDay: '+calcWorkingTimeDay);
 
-                        } else {
-                            console.log("updateCallback " + callback);
-                            res.write('Have a nice day!');//somewhere
-                        }
-                    });
-                }
-            })
+                        //update workerflag
+                        console.log("set workerflag");
+                        //console.dir(ts[i]);
+
+                        Worker.findOneAndUpdate({username:obj.username}, {loginstate: false} , {upsert: true}, function (err, callback) {
+                            console.log('update: loginstate');
+                            if (err || !callback) {
+                                res.sendStatus(500);
+                            }
+                        });
+
+                        Worker.findOneAndUpdate({username:obj.username}, {credit: objCredit} , {upsert: true}, function (err, callback){
+                            console.log('update: credit '+ objCredit);
+                            if (err || !callback) {
+                                throw(err);
+                            }
+                        });
+
+                        Timer.findOneAndUpdate({MA_id:ts[i].MA_id},{clockOut:clockOutTime},{upsert: true}, function (err,callback) {
+                            console.log("update clockout: "+ clockOutTime);
+                            if (err || !callback) {
+                                throw(err);
+                            }
+                        });
+                        console.log("ende if");
+                        return;
+
+                    }  res.redirect('/');
+                   }
+
+
+            });
         }
         else {
             //login timestamp
@@ -115,7 +145,7 @@ router.route('/checkin')
             var newTimer = new Timer();
             newTimer.MA_id=obj.username;
             newTimer.clockIn=Date.now();
-            newTimer.clockOut=null;
+            newTimer.clockOut=0;
             newTimer.save(function (err){
 
                 if(err){
@@ -127,8 +157,7 @@ router.route('/checkin')
 
             Worker.findOneAndUpdate({username:obj.username}, {loginstate:true} , {upsert: true}, function (err, callback) {
                 if (err || !callback) {
-                    return res.sendStatus(500);
-
+                   throw(err);
                 } else {
                     console.log("updateCallback " + callback);
                     res.redirect('/content/mgmtCockpit.html');
