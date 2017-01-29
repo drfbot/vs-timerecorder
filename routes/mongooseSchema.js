@@ -45,8 +45,6 @@ module.exports.getWorkerByUsername = function(usernameVal, callback){
             callback(null ,worker);
         }
     });
-
-
 };
 
 module.exports.getWorkerById = function(id, callback){
@@ -72,14 +70,3 @@ module.exports.checkPassword = function(pass, hash, callback){
     })
 }; -- outdated */
 
-
-
-
-//temporary data for time calculaiton purposes
-var timeSchema = new mongoose.Schema({
-    MA_id: String
-    , clockIn: Number
-    , clockOut: Number
-});
-
-var Timer = module.exports = mongoose.model('Timer', timeSchema);
