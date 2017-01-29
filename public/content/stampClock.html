@@ -10,6 +10,21 @@
 <script type="text/javascript" src="../javascripts/jquery3.1-1.js"></script>
 <script type="text/javascript" src="../javascripts/bootstrap.js"></script>
 <script type="text/javascript" src="../javascripts/functions.js"></script>
+<script>
+    $(document).ready(function(){
+
+          /*document.getElementById("stamp").addEventListener("click", function(){
+              var status = getCurrentStatus(getParameterByName("username"));
+
+                if(document.getElementById("stamp").innerHTML ==="Danke! Frohes Schaffen."){
+                    document.getElementById("stamp").innerHTML = "adé";
+                }else{
+                    document.getElementById("stamp").innerHTML = "Danke! Frohes Schaffen.";
+                }
+
+        });*/
+    });
+</script>
 
 <body>
 
@@ -56,8 +71,13 @@
 
     </script>
     <div class="col-md-5 col-md-offset-3">
-        <button class="btn btn-lg btn-success" id="stamp">Kommen/Gehen</button>
+        <button class="btn btn-lg btn-success" id="stamp" data-toggle="collapse" data-target="#banner">Kommen/Gehen</button>
+        <br>
+        <div class="well-sm collapse pull-center" id="banner">
+        <label class="panel-info alert-info col-md-5"><h4>Daten wurden verarbeitet.</h4> Sie können das Fenster jetzt schließen.</h4></label>
     </div>
+<br>
+
 
 </div> <!-- /container btn-block-->
 

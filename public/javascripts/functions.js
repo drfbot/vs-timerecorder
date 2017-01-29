@@ -1,4 +1,5 @@
-
+var Worker = require('../routes/mongooseSchema');
+var btnclick =null;
 window.onload=function(){
 
     function action(){
@@ -20,16 +21,20 @@ $("body").find(".btn").each(function(){
 //=======================================
 // REST interaction
 //=======================================
-
-function logout() {
-    //DB interaktion Session stop.
+function changeButton(){
+    if(btnclick==null){
+        btnclick=document.getElementById("stamp");
+    }
+    document.getElementById("stamp").innerHTML=" -- ";
+    $("#stamp").removeClass("btn-success").addClass("btn-info");
 }
 
-function login(){
-    //DB interaktion Session start + timestamp
+function getCurrentStatus(name){
+    Worker.findOne({username:name},function (err,res) {
+       if (err) throw err;
+        return res.loginstate;
+    });
 }
-
-
 //=======================================
 // Charts
 //=======================================

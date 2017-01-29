@@ -5,7 +5,6 @@ var mongodb =  require('mongodb');
 var Schema = mongoose.Schema;
 var Worker = require('./mongooseSchema');
 var Timer = require('./mongooseTimeSchema');
-
 var bcrypt = require('bcryptjs');
 
 //Mongoose Connection
@@ -37,7 +36,7 @@ router.route('/auth')
 
         Worker.findOne({username: req.body.username},function(err, workers){
 
-            if(err)res.send(err);
+            if(err) res.redirect('/');
             console.log(workers);
 
             bcrypt.compare(req.body.password, workers.passwd, function(err, pwBool) {
@@ -98,6 +97,7 @@ router.route('/checkin')
                 for(var i=0;i<ts.length;i++){
                     console.log("in for");
                     if(ts[i].clockOut===0){
+                        console.log("finding on positioin "+i);
                         //set clockout
                         var clockOutTime=Date.now();
                         var calcWorkingTimeDay = ((clockOutTime-ts[i].clockIn)*1000*60*60); //seconds/*minutes/*hours => in hours
@@ -107,7 +107,6 @@ router.route('/checkin')
 
                         //update workerflag
                         console.log("set workerflag");
-                        //console.dir(ts[i]);
 
                         Worker.findOneAndUpdate({username:obj.username}, {loginstate: false} , {upsert: true}, function (err, callback) {
                             console.log('update: loginstate');
@@ -123,20 +122,26 @@ router.route('/checkin')
                             }
                         });
 
-                        Timer.findOneAndUpdate({MA_id:ts[i].MA_id},{clockOut:clockOutTime},{upsert: true}, function (err,callback) {
+                        Timer.findOneAndUpdate({MA_id:ts[i].MA_id, clockOut:0},{clockOut:clockOutTime},{upsert: true}, function (err,callback) {
                             console.log("update clockout: "+ clockOutTime);
                             if (err || !callback) {
                                 throw(err);
                             }
                         });
                         console.log("ende if");
-                        return;
+                    //    return;
+                    }
+                    else{
+                        console.log("no match");
+                    }
 
-                    }  res.redirect('/');
-                   }
-
-
-            });
+                   }//ende for
+                   ts=null;
+                 //
+                    //changeButton(obj.loginstate);
+                  //res.sendFile('../index.html', {root: __dirname});
+                  //res.write("Danke! Bis morgen dann. Pünktlich und gewaschen.");
+               });
         }
         else {
             //login timestamp
@@ -160,26 +165,10 @@ router.route('/checkin')
                    throw(err);
                 } else {
                     console.log("updateCallback " + callback);
-                    res.redirect('/content/mgmtCockpit.html');
+                    //res.sendFile('../content/mgmtCockpit.html', {root: __dirname});
+                    //document.getElementById("stamp").innerHTML="mopps";
                 }
             });
-
-            
-
-
-            /*var query = {"username": req.params('username')};
-            var insert = {"timestamp": Date.now()};
-            console.log("timestamp " + Date.now());
-
-            Worker.findOneAndUpdate(query, insert, {upsert: true}, function (err, callback) {
-                if (err || !callback) {
-                    return res.sendStatus(500);
-
-                } else {
-                    console.log("updateCallback " + callback);
-                    res.write('Have a nice day!');//somewhere
-                }
-            });*/
         }
     });
 });
