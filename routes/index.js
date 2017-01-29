@@ -33,82 +33,75 @@ router.route('/auth')
 .post(function(req,res){
 
 Worker.findOne({username: req.body.username},function(err, workers){
-		
-		if(err)
-			res.send(err);
-		
-		console.log(workers);
-		
-		bcrypt.compare(req.body.password, workers.passwd, function(err, bla) {
-		if(err)
-			res.send(err);
-		
-		res.redirect("../content/stampClock.html?MaName=" + workers.name);
-		});
-	});
-	});
+    if(err){
+        res.send(err);
+    }
+
+		console.log("worker: "+workers);
+
+    Worker.checkPassword(req.body.password,workers.passwd, function (err, pwBool) {
+        if(err){
+            res.sendStatus(500);
+            return;
+        }
+        if(pwBool){
+            console.log("successful authentication");
+            res.redirect('/content/mgmtCockpit.html?MaName='+workers.name+'&username='+workers.username);
+        }
+        else res.write('NOT a valid user');
+        });
+    });
+});
 
 router.route('/workers')
 
 .get(function(req,res){
-	
+
 	Worker.find(function(err, workers){
-		
+
 		if(err)
 			res.send(err);
 		res.json(workers);
 	});
-	
+
 });
 
-router.route('/worker/add')
+router.route('/checkin')
 
-.post(function(req,res){
-	
-	var bcrypt = require('bcryptjs');
-    var salt = bcrypt.genSalt(10, function(err, salt) {
-        if(err){
-            console.log('salt '+ salt);
-            console.log('problem salting the hash ' + req.body.password);
+.get( function (req,res) {
+
+    Worker.findOne({'username': req.params('username')}, function (err, obj) {
+        if (err || !obj) {
+            res.send(500);
+            console.log("error: " + err + ", obj: " + obj);
+            return;
+        }
+
+        if (obj.loginstate) {
+            //logout
+
+        }
+        else {
+            //login timestamp
+
+            console.log('checkin active - user timestamp renewal');
+            var query = {"username": req.params('username')};
+            console.log("username " + req.params('username'));
+            var insert = {"timestamp": Date.now()};
+            console.log("timestamp " + Date.now());
+
+            Worker.findOneAndUpdate(query, insert, {upsert: true}, function (err, callback) {
+                if (err || !callback) {
+                    return res.sendStatus(500);
+
+                } else {
+                    console.log("updateCallback " + callback);
+                    res.write('Have a nice day!');//somewhere
+                }
+            });
         }
     });
-
-    var hash = bcrypt.hashSync(req.body.password,salt);
-	
-	
-	var newWorker = new Worker();
-	newWorker.username = req.body.username;
-	newWorker.name = req.body.name;
-	newWorker.passwd = hash;
-	newWorker.gender = req.body.gender;
-	newWorker.role = req.body.role;
-	// IF no Picture use Gender Picture
-	newWorker.portrait = req.body.portrait;
-	// newWorker.sessionToken = req.body.;
-	newWorker.contract = req.body.contract;
-	newWorker.startDate = req.body.startDate;
-	newWorker.endDate = req.body.endDate;
-	newWorker.debit = req.body.debit;
-	newWorker.credit = 0;
-	newWorker.vacation = req.body.vacation;
-	newWorker.vacationState = false;
-	newWorker.illness = 0;
-	newWorker.illnessState  = false;
-	newWorker.street = req.body.street;
-	newWorker.postalcode = req.body.postalcode;
-	newWorker.city = req.body.city;
-	newWorker.phone = req.body.phone;
-
-	newWorker.save(function (err){
-		
-	if(err){
-		res.send(err);
-	}
-		 res.json({ message: 'Mitarbeiter angelegt!' });
-	});
-	
 });
-
 
 
 module.exports = router;

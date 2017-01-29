@@ -18,42 +18,53 @@ router.post('/check/', function (req, res, next){
 });
 
 
-//noch nicht angesteuerte Route für das Management zur Nutzereintragung
-router.post('/create', function (req , res) {
-    // Create Worker
-    //console.dir(req);
-    //console.log('entered: '+ req.body.password +' '+ req.body.username);
+router.route('/worker/add')
 
-    //cryptomagic
-    var bcrypt = require('bcryptjs');
-    var salt = bcrypt.genSalt(10, function(err, salt) {
-        if(err){
-            console.log('salt '+ salt);
-            console.log('problem salting the hash ' + req.body.password);
-        }
-    });
+    .post(function(req,res){
 
-    var hash = bcrypt.hashSync(req.body.password,salt);
+        var bcrypt = require('bcryptjs');
+        var salt = bcrypt.genSalt(10, function(err, salt) {
+            if(err){
+                console.log('salt '+ salt);
+                console.log('problem salting the hash ' + req.body.password);
+            }
+        });
 
-    var worker = new Worker({
-        username: req.body.username
-        , name: req.body.name
-        , passwd: hash //hash
-        , role: req.body.role
-        , sessionToken: req.body.sessionToken //später autogeneriert
-        , contract: req.body.contract
-        , debit: 1
-        , credit: 1
-        , vacation: 1
-        , illness: 3
-    }).save(function (err) {
-        console.log("saved");
-        if (err) {
-            console.log(err);
-        }});
+        var hash = bcrypt.hashSync(req.body.password,salt);
 
-    console.log(worker);
-    res.redirect('/content/mgmtCockpit.html')
+
+        var newWorker = new Worker();
+        newWorker.username = req.body.username;
+        newWorker.name = req.body.name;
+        newWorker.passwd = hash;
+        newWorker.gender = req.body.gender;
+        newWorker.timestamp="";//empty
+        newWorker.loginstate=false;
+        newWorker.role = req.body.role;
+        // IF no Picture use Gender Picture
+        newWorker.portrait = req.body.portrait;
+        // newWorker.sessionToken = req.body.;
+        newWorker.contract = req.body.contract;
+        newWorker.startDate = req.body.startDate;
+        newWorker.endDate = req.body.endDate;
+        newWorker.debit = req.body.debit;
+        newWorker.credit = 0;
+        newWorker.vacation = req.body.vacation;
+        newWorker.vacationState = false;
+        newWorker.illness = 0;
+        newWorker.illnessState  = false;
+        newWorker.street = req.body.street;
+        newWorker.postalcode = req.body.postalcode;
+        newWorker.city = req.body.city;
+        newWorker.phone = req.body.phone;
+
+        newWorker.save(function (err){
+
+            if(err){
+                res.send(err);
+            }
+            res.redirect('/content/mgmtCockpit.html#create')
+        });
 });
 
 module.exports = router;

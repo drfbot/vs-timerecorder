@@ -44,8 +44,19 @@
         </div>
     </div>
 
+    <script type="text/javascript">
+       window.onload= function() {
+
+       $('#stamp').click(function() {
+           console.log("comeAndGo click");
+           $.get("/checkin", { username: getParameterByName('username')}); //ignores response
+       });
+       }
+
+
+    </script>
     <div class="col-md-5 col-md-offset-3">
-        <button class="btn btn-lg btn-success" id="stamp" onclick="action()">Kommen/Gehen</button>
+        <button class="btn btn-lg btn-success" id="stamp">Kommen/Gehen</button>
     </div>
 
 </div> <!-- /container btn-block-->
