@@ -7,7 +7,9 @@ var $grid = $('.grid').isotope({
   layoutMode: 'fitRows',
   getSortData: {
     name: '.name',
-    symbol: '.symbol',
+    contract: '.contract',
+    illnessState: '.illnessState',
+    vacationState: '.vacationState',
     number: '.number parseInt',
     category: '[data-category]',
     weight: function( itemElem ) {
@@ -23,8 +25,10 @@ var $grid = $('.grid').isotope({
 var filterFns = {
   // show if number is greater than 50
   numberGreaterThan50: function() {
-    var number = $(this).find('.number').text();
-    return parseInt( number, 10 ) > 50;
+    var ist = $(this).find('.credit').text();
+    var soll =$(this).find('.debit').text();
+      console.log("Berechnung: "+ist>soll/2);
+    return parseFloat(ist, 10) < (soll/2);
   },
   // show if name ends with -ium
   ium: function() {
@@ -73,7 +77,7 @@ function getMaData() {
   //  inputData.length --->>>>> Anzahl der ELemente des zurückgegebenen JSON Arrays
   
   for (var k = 0; k < inputData.length; k++) {
-	   var $items = getItemElement(inputData[k].name,inputData[k].gender,inputData[k].role,inputData[k].contract,inputData[k].credit,inputData[k].vacationState,inputData[k].illnessState);
+	   var $items = getItemElement(inputData[k].name,inputData[k].gender,inputData[k].role,inputData[k].contract,inputData[k].credit,inputData[k].debit,inputData[k].vacationState,inputData[k].illnessState);
 	   console.log(inputData[k])
   // insert new elements
   $grid.isotope( 'insert', $items ); 
@@ -83,15 +87,28 @@ function getMaData() {
 };
 
 // make <div class="grid-item grid-item--width# grid-item--height#" />
-function getItemElement(name, gender, role, contract,credit, vacationState, illnessState) {
+function getItemElement(name, gender, role, contract,credit, debit, vacationState, illnessState) {
   var $item = $('<div class="element-item" style="background-image: url(../media/ma_avatars/noPic_user.png); background-size: 150px 193px; background-repeat: no-repeat;"></div>');
     $item.addClass( gender );
+    if(contract === "befristet"){
+       $item.addClass( "contract" ); 
+    }
+    if(illnessState === true){
+      $item.addClass( "illnessState" );  
+    }
+    if(vacationState === true){
+      $item.addClass( "vacationState" );  
+    }
+    
+    
+    
   // add random number
   $item.append( '<p class="name">' + name + '</p>' );
   //$item.append( '<p class="gender">' + gender + '</p>' );
   $item.append( '<p class="role">' + role + '</p>' );
   $item.append( '<p class="contract">' + contract + '</p>' );
   $item.append( '<p class="credit">' + credit + '</p>' );
+  $item.append( '<p class="debit">' + debit + '</p>' );
   if (vacationState === true){
 	$item.append( '<p class="vacationState">' + "im Urlaub" + '</p>' );  
   }

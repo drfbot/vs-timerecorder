@@ -143,6 +143,10 @@ border-radius: 20px;
   color: white;
 }
 
+.element-item .debit {
+ visibility: hidden;
+}
+
 .element-item .vacationState {
   position: absolute;
   text-align: center;
