@@ -18,6 +18,18 @@ router.post('/check/', function (req, res, next){
 });
 
 
+router.route('/worker/remove')
+
+.post(function(req,res){
+
+    Worker.deleteUserByUsername(req.body.username, function (err, res) {
+        console.log("delUser");
+      if(err) throw err;
+        res.redirect('/content/mgmtCockpit.html');
+    });
+
+});
+
 router.route('/worker/add')
 
     .post(function(req,res){

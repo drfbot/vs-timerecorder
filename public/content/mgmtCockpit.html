@@ -318,7 +318,7 @@
                 <script>
                     function checkAddUser(){
                         if (getParameterByName('add')==true){
-                            document.write('<h4>Worker angelegt!</h4>')
+                            document.getElementsByName("").innerHTML('<h4>Worker angelegt!</h4>')
                         }
                     }
                 </script>
@@ -360,18 +360,21 @@
 						<br>
 						<div class="btn-group" data-toggle="buttons">
                             <label class="btn btn-primary active">
-                                <input type="radio" autocomplete="off" name="contract" id="contractLim" value="befristet" checked> befristet
+                                <input type="radio" autocomplete="off" name="contract" id="contractLim" value="befristet" data-toggle="collapse" data-target="#endDate"> befristet
                             </label>
                             <label class="btn btn-primary">
-                                <input type="radio" autocomplete="off" name="contract" id="contractUnlim" value="unbefristet"> unbefristet
+                                <input type="radio" autocomplete="off" name="contract" id="contractUnlim" value="unbefristet" checked> unbefristet
                             </label>
                         </div>
-						<br>
+
+                        <br>
 						<label for="startDate" class="sr-only">Start Date</label>
                         <input type="text" name="startDate" id="startDate" class="form-control" placeholder="Start Datum" required autofocus>
 						<label for="endDate" class="sr-only">End Date</label>
-                        <input type="text" name="endDate" id="endDate" class="form-control" placeholder="End Datum" required autofocus>
+                        <
+                        <input type="text" name="contract" id="endDate" class="form-control collapse" placeholder="End Datum" required autofocus>
 						<label for="debit" class="sr-only">Debit</label>
+                        <br>
                         <input type="text" name="debit" id="debit" class="form-control" placeholder="Arbeitsstunden Woche" required autofocus>
 						<!-- CREDITS ZU BEGINN 0 -->
 						<label for="vacation" class="sr-only">Vacation</label>
@@ -379,6 +382,8 @@
 						<!-- VacationState ZU BEGINN 0 -->
 						<!-- ILLNESS ZU BEGINN 0 -->
 						<!-- ILLNESSSTATE ZU BEGINN 0 -->
+                        <br>
+
 						<label for="street" class="sr-only">Street</label>
                         <input type="text" name="street" id="street" class="form-control" placeholder="Strasse" required autofocus>
 						<label for="postalcode" class="sr-only">Postal Code</label>
@@ -387,6 +392,7 @@
                         <input type="text" name="city" id="city" class="form-control" placeholder="Stadt" required autofocus>
 						<label for="phone" class="sr-only">Phone</label>
                         <input type="text" name="phone" id="phone" class="form-control" placeholder="Rufnummer" required autofocus>
+                        <br>
                         <br>
                         <!--<div class="btn-group" data-toggle="buttons">
                             <label class="radio-inline"><input type="radio" name="btn" autocomplete="off" value="0" data-toggle="dismiss" data-target="#end"> unbefristet</label>

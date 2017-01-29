@@ -63,10 +63,11 @@ module.exports.checkPassword = function(pass, hash, callback){
     });
 };
 
-/*module.exports.checkRole = function(username, callback){
-    Worker.findOne({username:username},'role',function(err,worker){
-        if(err) return handleError(err);
-        callback(null,worker.role);
-    })
-}; -- outdated */
+module.exports.deleteUserByUsername = function(username, callback){
+    console.log("DelUser - mongooseSchema");
+    Worker.findByIdAndRemove({username:username},function(err,worker){
+        if(err) return err;
+        callback(null,true);
+    });
+};
 

@@ -35,6 +35,7 @@ function getCurrentStatus(name){
         return res.loginstate;
     });
 }
+
 //=======================================
 // Charts
 //=======================================
@@ -49,18 +50,6 @@ function somethingtoChartContainer() {
     });
 }
 
-
-function genStats() {
-	
-	
-	
-	
-	
-	
-	
-	
-	return 
-}
 
 
 //=======================================

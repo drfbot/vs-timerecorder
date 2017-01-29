@@ -77,7 +77,7 @@ function getMaData() {
   //  inputData.length --->>>>> Anzahl der ELemente des zurückgegebenen JSON Arrays
   
   for (var k = 0; k < inputData.length; k++) {
-	   var $items = getItemElement(inputData[k].name,inputData[k].gender,inputData[k].role,inputData[k].contract,inputData[k].credit,inputData[k].debit,inputData[k].vacationState,inputData[k].illnessState,inputData[k].startDate,inputData[k].endDate,inputData[k].vacation,inputData[k].illness);
+	   var $items = getItemElement(inputData[k].username,inputData[k].name,inputData[k].gender,inputData[k].role,inputData[k].contract,inputData[k].credit,inputData[k].debit,inputData[k].vacationState,inputData[k].illnessState,inputData[k].startDate,inputData[k].endDate,inputData[k].vacation,inputData[k].illness);
 	   console.log(inputData[k])
   // insert new elements
   $grid.isotope( 'insert', $items ); 
@@ -86,7 +86,7 @@ function getMaData() {
 	}
 };
 
-function getItemElement(name, gender, role, contract,credit, debit, vacationState, illnessState, startDate, endDate, vacation, illness) {
+function getItemElement(username, name, gender, role, contract,credit, debit, vacationState, illnessState, startDate, endDate, vacation, illness) {
   var $item = $('<div class="element-item" style="background-image: url(../media/ma_avatars/noPic_user.png); background-size: 150px 193px; background-repeat: no-repeat;"></div>');
     $item.addClass( gender );
     if(contract === "befristet"){
@@ -113,7 +113,7 @@ function getItemElement(name, gender, role, contract,credit, debit, vacationStat
   $item.append( '<p class="endDate">' + endDate + '</p>' );
   $item.append( '<p class="vacation">' + vacation + '</p>' );
   $item.append( '<p class="illness">' + illness + '</p>' );
-  $item.append( '<label class="btn btn-primary active"><input type="radio" autocomplete="off" name="bearbeiten" id="bearbeiten" value="bearbeiten" checked> bearbeiten</label>');
+  $item.append( '<label class="btn btn-primary active"><input type="radio" class="checkbox" autocomplete="off" name="bearbeiten" id="bearbeiten" value="bearbeiten">bearbeiten</label>');
     
   if (vacationState === true){
 	$item.append( '<p class="vacationState">' + "im Urlaub" + '</p>' );  
