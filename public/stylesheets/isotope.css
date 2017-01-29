@@ -95,6 +95,7 @@ border-radius: 20px;
   left: 10px;
   top: 194px;
   text-transform: none;
+  text-align: center;
   letter-spacing: 0;
   font-size: 1.2em;
   color: white;
@@ -104,6 +105,7 @@ border-radius: 20px;
 
 .element-item .gender {
   position: absolute;
+  text-align: center;
   left: 10px;
   bottom: 70px;
   font-size: 1.0em;
@@ -113,6 +115,7 @@ border-radius: 20px;
 
 .element-item .role {
   position: absolute;
+  text-align: center;
   left: 10px;
   bottom: 58px;
   font-size: 1.0em;
@@ -122,6 +125,7 @@ border-radius: 20px;
 
 .element-item .contract {
   position: absolute;
+  text-align: center;
   left: 10px;
   bottom: 46px;
   font-size: 1.0em;
@@ -131,6 +135,7 @@ border-radius: 20px;
 
 .element-item .credit {
   position: absolute;
+  text-align: center;
   left: 10px;
   bottom:34px;
   font-size: 1.0em;
@@ -140,6 +145,7 @@ border-radius: 20px;
 
 .element-item .vacationState {
   position: absolute;
+  text-align: center;
   left: 10px;
   bottom: 22px;
   font-size: 1.0em;
@@ -148,6 +154,7 @@ border-radius: 20px;
 }
   .element-item .illnessState {
   position: absolute;
+  text-align: center;
   left: 10px;
   bottom: 10px;
   font-size: 1.0em;

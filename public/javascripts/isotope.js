@@ -88,12 +88,19 @@ function getItemElement(name, gender, role, contract,credit, vacationState, illn
     $item.addClass( gender );
   // add random number
   $item.append( '<p class="name">' + name + '</p>' );
-  $item.append( '<p class="gender">' + gender + '</p>' );
+  //$item.append( '<p class="gender">' + gender + '</p>' );
   $item.append( '<p class="role">' + role + '</p>' );
   $item.append( '<p class="contract">' + contract + '</p>' );
   $item.append( '<p class="credit">' + credit + '</p>' );
-  $item.append( '<p class="vacationState">' + vacationState + '</p>' );
-  $item.append( '<p class="illnessState">' + illnessState + '</p>' );
-  
+  if (vacationState === true){
+	$item.append( '<p class="vacationState">' + "im Urlaub" + '</p>' );  
+  }
+  else
+  {
+	$item.append( '<p class="vacationState">' + "Verf&uuml;gbar" + '</p>' );    
+  }
+  if (illnessState === true){
+  $item.append( '<p class="illnessState">' + "Krank" + '</p>' );
+  }
   return $item;
 }
