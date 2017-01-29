@@ -80,6 +80,9 @@ body {
   margin: 5px;
   padding: 10px;
   background-color: #28F;
+  -webkit-border-radius: 20px;
+-moz-border-radius: 20px;
+border-radius: 20px;
   }
 
 .element-item > * {

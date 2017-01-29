@@ -86,7 +86,7 @@ function getMaData() {
 
 // make <div class="grid-item grid-item--width# grid-item--height#" />
 function getItemElement(name, gender, role, contract,credit, vacationState, illnessState) {
-  var $item = $('<div class="element-item" style="background-image: url(../media/ma_avatars/user1.jpg); background-size: 150px 193px; background-repeat: no-repeat;"></div>');
+  var $item = $('<div class="element-item" style="background-image: url(../media/ma_avatars/noPic_user.png); background-size: 150px 193px; background-repeat: no-repeat;"></div>');
     $item.addClass( gender );
   // add random number
   $item.append( '<p class="name">' + name + '</p>' );
