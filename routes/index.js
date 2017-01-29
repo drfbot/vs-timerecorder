@@ -26,6 +26,9 @@ router.get('/', function(req, res, next) {
 
 router.use(function(req, res, next) {
     console.log('Es passiert etwas...');
+	// Add headers
+
+    // Pass to next layer of middleware
     next();
 });
 

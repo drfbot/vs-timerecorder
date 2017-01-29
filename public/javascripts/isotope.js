@@ -86,7 +86,6 @@ function getMaData() {
 	}
 };
 
-// make <div class="grid-item grid-item--width# grid-item--height#" />
 function getItemElement(name, gender, role, contract,credit, debit, vacationState, illnessState, startDate, endDate, vacation, illness) {
   var $item = $('<div class="element-item" style="background-image: url(../media/ma_avatars/noPic_user.png); background-size: 150px 193px; background-repeat: no-repeat;"></div>');
     $item.addClass( gender );
@@ -114,6 +113,7 @@ function getItemElement(name, gender, role, contract,credit, debit, vacationStat
   $item.append( '<p class="endDate">' + endDate + '</p>' );
   $item.append( '<p class="vacation">' + vacation + '</p>' );
   $item.append( '<p class="illness">' + illness + '</p>' );
+  $item.append( '<label class="btn btn-primary active"><input type="radio" autocomplete="off" name="bearbeiten" id="bearbeiten" value="bearbeiten" checked> bearbeiten</label>');
     
   if (vacationState === true){
 	$item.append( '<p class="vacationState">' + "im Urlaub" + '</p>' );  

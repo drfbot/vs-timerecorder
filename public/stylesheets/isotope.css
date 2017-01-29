@@ -152,13 +152,7 @@ visibility: hidden;
 }
 
 .element-item .endDate {
-  position: absolute;
-  text-align: center;
-  left: 10px;
-  bottom: 1px;
-  font-size: 1.0em;
-  font-weight: bold;
-  color: white;
+visibility: hidden;
 }
 
 .element-item .vacation {
@@ -168,6 +162,20 @@ visibility: hidden;
 .element-item .illness {
  visibility: hidden;
 }
+
+.element-item .btn btn-primary active {
+	left: 10px;
+  bottom:2px;
+}
+
+.element-item .btn-primary active {
+
+}
+
+.element-item .active {
+
+}
+
 
 .element-item .vacationState {
   position: absolute;

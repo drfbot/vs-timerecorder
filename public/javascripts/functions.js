@@ -45,6 +45,19 @@ function somethingtoChartContainer() {
 }
 
 
+function genStats() {
+	
+	
+	
+	
+	
+	
+	
+	
+	return 
+}
+
+
 //=======================================
 // Frontend Designkrams
 //=======================================
