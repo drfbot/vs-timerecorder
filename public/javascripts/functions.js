@@ -96,29 +96,34 @@ function getParameterByName(name, url) {
 
 
 //=======================================
-// ISOTOPE - Dynamische Generiuerung der Elemente
+// Frontend FileChooser
 //=======================================
 
-/*function getMaData(){
-	alert("GET MA LISTE");
-	var container = document.getElementById("isotope-grid");
-	
-	
-	container.innerHTML = container.innerHTML + '<div class="element-item male "><h3 class="name">Detelf Dumm</h3></div>';
-	container.innerHTML = container.innerHTML + '<div class="element-item male "><h3 class="name">Angelina Fotze</h3></div>';
-	container.innerHTML = container.innerHTML + '<div class="element-item male "><h3 class="name">Angelina Fotze</h3></div>';
-	container.innerHTML = container.innerHTML + '<div class="element-item male "><h3 class="name">Angelina Fotze</h3></div>';
-	container.innerHTML = container.innerHTML + '<script src="../javascripts/jquery.min.js" type="text/javascript"></script>';
-	container.innerHTML = container.innerHTML + '<script src="../javascripts/isotope.pkgd.js" type="text/javascript"></script>';
-	container.innerHTML = container.innerHTML + '<script src="../javascripts/isotope.js" type="text/javascript"></script>';
-	//initIsotope();
-	
-	
-}
-*/
-function initIsotope(){
-	
-	//<script src="../javascripts/jquery.min.js" type="text/javascript"></script>
-//<script src="../javascripts/isotope.pkgd.js" type="text/javascript"></script>
-//<script src="../javascripts/isotope.js" type="text/javascript"></script>
-}
+function pickApicture(evt){
+var dateien = evt.target.files; // FileList objekt
+ 
+    // erste Datei auswählen (wichtig, weil IMMER ein FileList Objekt generiert wird)
+    var uploadDatei = dateien[0];
+ 
+    // Ein Objekt um Dateien einzulesen
+    var reader = new FileReader();
+ 
+    var senddata = new Object();
+    // Auslesen der Datei-Metadaten
+    senddata.name = uploadDatei.name;
+    senddata.date = uploadDatei.lastModified;
+    senddata.size = uploadDatei.size;
+    senddata.type = uploadDatei.type;
+ 
+    // Wenn der Dateiinhalt ausgelesen wurde...
+    reader.onload = function(theFileData) {
+      senddata.fileData = theFileData.target.result; // Ergebnis vom FileReader auslesen
+ 
+      /*
+      Code für AJAX-Request hier einfügen
+      */
+    }
+ 
+    // Die Datei einlesen und in eine Data-URL konvertieren
+    reader.readAsDataURL(uploadDatei);
+  }
