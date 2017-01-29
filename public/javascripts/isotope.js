@@ -7,15 +7,15 @@ var $grid = $('.grid').isotope({
   layoutMode: 'fitRows',
   getSortData: {
     name: '.name',
+    startDate: '.startDate parseInt',
+    endDate: '.endDate parseInt',
+    vacation: '.vacation parseInt',
+    illness: '.illness parseInt',
     contract: '.contract',
     illnessState: '.illnessState',
-    vacationState: '.vacationState',
-    number: '.number parseInt',
-    category: '[data-category]',
-    weight: function( itemElem ) {
-      var weight = $( itemElem ).find('.weight').text();
-      return parseFloat( weight.replace( /[\(\)]/g, '') );
-    }
+    vacationState: '.vacationState'
+    
+    
   }
 });
 
@@ -77,7 +77,7 @@ function getMaData() {
   //  inputData.length --->>>>> Anzahl der ELemente des zurückgegebenen JSON Arrays
   
   for (var k = 0; k < inputData.length; k++) {
-	   var $items = getItemElement(inputData[k].name,inputData[k].gender,inputData[k].role,inputData[k].contract,inputData[k].credit,inputData[k].debit,inputData[k].vacationState,inputData[k].illnessState);
+	   var $items = getItemElement(inputData[k].name,inputData[k].gender,inputData[k].role,inputData[k].contract,inputData[k].credit,inputData[k].debit,inputData[k].vacationState,inputData[k].illnessState,inputData[k].startDate,inputData[k].endDate,inputData[k].vacation,inputData[k].illness);
 	   console.log(inputData[k])
   // insert new elements
   $grid.isotope( 'insert', $items ); 
@@ -87,7 +87,7 @@ function getMaData() {
 };
 
 // make <div class="grid-item grid-item--width# grid-item--height#" />
-function getItemElement(name, gender, role, contract,credit, debit, vacationState, illnessState) {
+function getItemElement(name, gender, role, contract,credit, debit, vacationState, illnessState, startDate, endDate, vacation, illness) {
   var $item = $('<div class="element-item" style="background-image: url(../media/ma_avatars/noPic_user.png); background-size: 150px 193px; background-repeat: no-repeat;"></div>');
     $item.addClass( gender );
     if(contract === "befristet"){
@@ -109,6 +109,12 @@ function getItemElement(name, gender, role, contract,credit, debit, vacationStat
   $item.append( '<p class="contract">' + contract + '</p>' );
   $item.append( '<p class="credit">' + credit + '</p>' );
   $item.append( '<p class="debit">' + debit + '</p>' );
+    
+  $item.append( '<p class="startDate">' + startDate + '</p>' );
+  $item.append( '<p class="endDate">' + endDate + '</p>' );
+  $item.append( '<p class="vacation">' + vacation + '</p>' );
+  $item.append( '<p class="illness">' + illness + '</p>' );
+    
   if (vacationState === true){
 	$item.append( '<p class="vacationState">' + "im Urlaub" + '</p>' );  
   }

@@ -147,6 +147,28 @@ border-radius: 20px;
  visibility: hidden;
 }
 
+.element-item .startDate {
+visibility: hidden;
+}
+
+.element-item .endDate {
+  position: absolute;
+  text-align: center;
+  left: 10px;
+  bottom: 1px;
+  font-size: 1.0em;
+  font-weight: bold;
+  color: white;
+}
+
+.element-item .vacation {
+ visibility: hidden;
+}
+
+.element-item .illness {
+ visibility: hidden;
+}
+
 .element-item .vacationState {
   position: absolute;
   text-align: center;
