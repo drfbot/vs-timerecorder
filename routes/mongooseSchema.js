@@ -45,18 +45,6 @@ module.exports.getWorkerByUsername = function(usernameVal, callback){
     console.log("callback :"+ callback);
 };
 
-/*module.exports.getWorkerByUsername = function(usernameVal, callback){
-    console.log('worker findOne');
-    Worker.findOne({'username': usernameVal}, function (err,obj) {
-        console.log("finding...");
-        if(err){
-            console.log("findError");
-            throw err;
-        }
-        callback(null,JSON.encode(obj));
-    });
-};*/
-
 module.exports.getWorkerById = function(id, callback){
     Worker.findById(id, callback);
 };
@@ -81,14 +69,13 @@ module.exports.checkPassword = function(pass, hash, callback){
 
 
 
-//temporary data for calculaiton purposes
-/*
+
+//temporary data for time calculaiton purposes
 var timeSchema = new mongoose.Schema({
     MA_id: String
     , sessionToken: String //possibly redundant <> id
-    , clockIn: String
-    , clockOut: String
+    , clockIn: Number
+    , clockOut: Number
 });
 
-
-module.exports = mongoose.model('Time', timeSchema);*/
+var Timer = module.exports = mongoose.model('Timer', timeSchema);
