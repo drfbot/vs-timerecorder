@@ -64,10 +64,15 @@ module.exports.checkPassword = function(pass, hash, callback){
 };
 
 module.exports.deleteUserByUsername = function(username, callback){
-    console.log("DelUser - mongooseSchema");
-    Worker.findByIdAndRemove({username:username},function(err,worker){
+    console.log("DelUser - mongooseSchema "+username);
+    Worker.remove({username: username},
+        function(err) {
+            if (err) callback.json(err);
+            //else    res.redirect("../content/public/mgmntCokpit.html");
+        });
+    /*Worker.findByIdAndRemove({username:username},function(err,worker){
         if(err) return err;
         callback(null,true);
-    });
+    });*/
 };
 

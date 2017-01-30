@@ -21,11 +21,21 @@ router.post('/check/', function (req, res, next){
 router.route('/worker/remove')
 
 .post(function(req,res){
+    console.dir(req);
+    //console.log("label: "+req.body.label);
+    console.log("btn: "+ req.body.loeschen);
 
-    Worker.deleteUserByUsername(req.body.username, function (err, res) {
+    var username=req.body.loeschen;
+    var part = username.substr(0,(req.body.loeschen.length-9));
+    console.log("user Username: "+part);
+
+    Worker.deleteUserByUsername(part, function (err, res) {
         console.log("delUser");
-      if(err) throw err;
-        res.redirect('/content/mgmtCockpit.html');
+      if(err){
+          console.log("error");
+          throw err;
+      }
+        res.redirect("../public/content/mgmtCockpit.html");
     });
 
 });
