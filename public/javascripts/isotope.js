@@ -120,7 +120,7 @@ function getItemElement(username, name, gender, role, contract,credit, debit, va
   $item.append( '<p class="endDate">' + getReadableDate(endDate) + '</p>' );
   $item.append( '<p class="vacation">' + vacation + '</p>' );
   $item.append( '<p class="illness">' + illness + '</p>' );
-  $item.append( '<form action="/users/worker/remove" method="post"><label class="sr-only" id="label" value="'+username+'"></label><p class ="delete"> <input type="submit" class="btn btn-danger active pull-left" autocomplete="off" name="loeschen" id="loeschen" value="'+username+' löeschen"></form></p>');
+  $item.append( '<form class="center-block" action="/users/worker/remove" method="post"><p class ="delete"> <input type="submit" class="btn btn-danger active" autocomplete="off" name="loeschen" id="loeschen" value="'+username+' löschen"></form></p>');
     
   if (vacationState != true && illnessState != true){
 	  $item.append( '<p class="vacationState">' + "Verf&uuml;gbar" + '</p>' );  

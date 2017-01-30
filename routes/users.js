@@ -26,16 +26,19 @@ router.route('/worker/remove')
     console.log("btn: "+ req.body.loeschen);
 
     var username=req.body.loeschen;
-    var part = username.substr(0,(req.body.loeschen.length-9));
+    var part = username.substr(0,(req.body.loeschen.length-8));
     console.log("user Username: "+part);
 
-    Worker.deleteUserByUsername(part, function (err, res) {
+    Worker.deleteUserByUsername(part, function (err, response) {
         console.log("delUser");
       if(err){
           console.log("error");
           throw err;
       }
-        res.redirect("../public/content/mgmtCockpit.html");
+      if(response){
+          res.redirect("/content/mgmtCockpit.html");
+      }
+
     });
 
 });
