@@ -1,4 +1,4 @@
-var Worker = require('../routes/mongooseSchema');
+//var Worker = require('../routes/mongooseSchema');
 var btnclick =null;
 window.onload=function(){
 
@@ -39,17 +39,54 @@ function getCurrentStatus(name){
 //=======================================
 // Charts
 //=======================================
+/*
+function drawCharts(){
+		var inputData = $.ajax({
+        type: 'get',
+        url: 'http://localhost:3000/workers',
+		async: false
+    }).responseJSON;
 
-function somethingtoChartContainer() {
-    $("#chart-container").insertFusionCharts({
-        type: "column2d",
-        width: "400",
-        height: "350",
-        dataFormat: "JSONURL",
-        dataSource: "../data/data.json" //später dynamische JSON-Abfrage
-    });
+	var dataFormat ='"data": [';
+	
+for (var k = 0; k < inputData.length; k++) {
+	dataFormat += '{ "label" : " ' + inputData[k].name + '","value":"' +  inputData[k].credit + '"}';
+	
+	if (k < inputData.length-1){
+		dataFormat += ',';
+	}
+	
 }
 
+dataFormat += ']';
+
+	var stream = fs.createWriteStream("MyJsonfile.json");
+stream.once('open', function(fd) {
+  stream.write('{"chart": {"caption": "Monthly","xaxisname": "Month","yaxisname": "Revenue","numberprefix": "$", "showvalues": "1","animation": "1"},');
+  stream.write(dataFormat);
+  stream.write(',"trendlines": [{"line": [{"startvalue": "700000","istrendzone": "1","valueonright": "1","tooltext": "AYAN","endvalue": "900000","color": "009933","displayvalue": "Target","showontop": "1","thickness": "5"}]}]}');
+  stream.end();
+});
+	
+}
+*/
+function drawCharts() {
+		console.log("DRAWING CHARTS.....")
+		$.ajax({
+        type: 'GET',
+        url: 'http://localhost:3000/genstats'
+    });
+    var ageGroupChart = new FusionCharts({
+        type: 'column2d',
+        renderAt: 'chart-container',
+        width: '600',
+        height: '400',
+        dataFormat: 'jsonurl',
+        dataSource: 'MyJsonfile.json'
+    });
+		
+	ageGroupChart.render();
+}
 
 
 //=======================================

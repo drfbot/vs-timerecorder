@@ -5,6 +5,7 @@ var mongodb =  require('mongodb');
 var Schema = mongoose.Schema;
 var Worker = require('./mongooseSchema');
 var Timer = require('./mongooseTimeSchema');
+var fs = require('fs');
 var bcrypt = require('bcryptjs');
 
 //Mongoose Connection
@@ -173,5 +174,44 @@ router.route('/checkin')
     });
 });
 
+// Route zum generieren der Statistic-Daten
+router.route('/genstats')
+.get(function(req,res){
 
+	Worker.find(function(err, workers){
+
+		if(err)
+			res.send(err);
+		//res.json(workers);
+		
+		console.log("WRITING FILE....")
+	var dataFormat ='"data": [';
+	console.log("DATA ? "+ workers.length );
+for (var k = 0; k < workers.length; k++) {
+	dataFormat += '{ "label" : " ' + workers[k].name + '","value":"' +  workers[k].credit + '"}';
+	
+	if (k < workers.length-1){
+		dataFormat += ',';
+	}
+	
+}
+
+dataFormat += ']';
+console.log("DIRNAME:" + __dirname);
+	var stream = fs.createWriteStream(__dirname + "/../public/content/MyJsonfile.json");
+stream.once('open', function(fd) {
+  stream.write('{"chart": {"caption": "Monthly","xaxisname": "Mitarbeiter","yaxisname": "Stunden","numberprefix": "Std:", "showvalues": "1","animation": "1"},');
+  stream.write(dataFormat);
+  stream.write(',"trendlines": [{"line": [{"showontop": "1","thickness": "5"}]}]}');
+  stream.end();
+		
+		
+		
+	res.json(workers);
+		});
+	
+
+	});
+});
 module.exports = router;
+
