@@ -75,7 +75,9 @@ router.route('/worker/add')
             if(err){
                 res.send(err);
             }
+			else{
             res.redirect('/content/mgmtCockpit.html');
+			}
         });
 });
 

@@ -12,11 +12,14 @@
 <script type="text/javascript" src="../javascripts/bootstrap.js"></script>
 <script type="text/javascript" src="../javascripts/functions.js"></script>
 <script type="text/javascript" src="../javascripts/fusioncharts/fusioncharts.js"></script>
-
 <script type="text/javascript" src="../javascripts/fusioncharts/fusioncharts.charts.js"></script>
 
+
+
 <script>
-$(document).ready(drawCharts);
+$(document).ready(function(){
+drawCharts();
+});
 </script>
 
 <body>
@@ -72,35 +75,17 @@ $(document).ready(drawCharts);
                 <div class="row">
 
                     <div class="col-md-5">
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
-                            Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
-                            ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla
-                            consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget,
-                            arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu
-                            pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean
-                            vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac,
-                            enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra
-                            nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel
-                            augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus,
-                            tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed
-                            ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id
-                        </p>
+<div id="chart-container">FusionCharts will render here</div>
                     </div>
                 </div>
 
                 <div class="row">
 
                     <div class="col-md-4">
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
-                            Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
-                            ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla
-                            consequat massa quis enim. Donec pede justo, fringilla vel,drerit id
-                        </p>
+					<div id="chart-container2">FusionCharts will render here</div>
                     </div>
                         
-						<div id="chart-container">FusionCharts will render here</div>
+						
 						
 
 
@@ -214,21 +199,29 @@ $(document).ready(drawCharts);
 						<label for="portrait" class="sr-only">Portrait</label>
                         <input type="file" name="portrait" id="portrait" class="form-control" placeholder="BildPfad" required autofocus>
 						<br>
-						<div class="btn-group" data-toggle="buttons">
-                            <label class="btn btn-primary active">
-                                <input type="radio" autocomplete="off" name="contract" id="contractLim" value="befristet" data-toggle="collapse" data-target="#endDate"> befristet
-                            </label>
+						<!--<div class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-primary active" for="startDate">
+                                <input type="radio" name="btn" autocomplete="off" value="0" data-toggle="dismiss" data-target="endDate"> unbefristet</label>
                             <label class="btn btn-primary">
-                                <input type="radio" autocomplete="off" name="contract" id="contractUnlim" value="unbefristet" checked> unbefristet
-                            </label>
-                        </div>
-
+                                <input type="radio" name="btn" autocomplete="off" value="1" data-toggle="collapse" data-target="endDate"> befristet</label>
+                        </div>-->
+						
+						<button id="befUnbef" type="button" class="btn btn-primary" data-toggle="collapse" data-target="#endDateArea" onClick="changeButtonText()">unbefristet</button>
                         <br>
-						<label for="startDate" class="sr-only">Start Date</label>
-                        <input type="text" name="startDate" id="startDate" class="form-control" placeholder="Start Datum" required autofocus>
-						<label for="endDate" class="sr-only">End Date</label>
+						<!--<div class="btn-group" data-toggle="buttons">
+                            <label class="radio-inline"><input type="radio" name="btn" autocomplete="off" value="0" data-toggle="dismiss" data-target="#endDate"> unbefristet</label>
+                            <label class="radio-inline"><input type="radio" name="btn" autocomplete="off" value="1" data-toggle="collapse" data-target="#endDate"> befristet</label>
+                        </div>-->
+						<div class="btn-group" data-toggle="buttons">
+                        <label for="startDate">Vertragsbeginn</label>
+                        <input type="date" name="startDate" id="startDate" class="form-control" placeholder="DD.MM.YYYY" required>
+						<div id="endDateArea" class="collapse">
 						<br>
-                        <input type="text" name="contract" id="endDate" class="form-control collapse" placeholder="End Datum" required autofocus>
+						<label for="endDate">Vertragsende</label>
+                            <input type="date" name="endDate" id="endDate" class="form-control" placeholder="DD.MM.YYYY" value="0001-01-01">
+						</div>
+                        <br>
+                        </div>
 						<label for="debit" class="sr-only">Debit</label>
                         <br>
                         <input type="text" name="debit" id="debit" class="form-control" placeholder="Arbeitsstunden Woche" required autofocus>
@@ -250,7 +243,7 @@ $(document).ready(drawCharts);
                         <input type="text" name="phone" id="phone" class="form-control" placeholder="Rufnummer" required autofocus>
                         <br>
                         <br>
-                        <!--<div class="btn-group" data-toggle="buttons">
+						 <!--<div class="btn-group" data-toggle="buttons">
                             <label class="radio-inline"><input type="radio" name="btn" autocomplete="off" value="0" data-toggle="dismiss" data-target="#end"> unbefristet</label>
                             <label class="radio-inline"><input type="radio" name="btn" autocomplete="off" value="1" data-toggle="collapse" data-target="#end"> befristet</label>
                         </div>-->
@@ -265,7 +258,14 @@ $(document).ready(drawCharts);
                         </div>
 						-->
                         <!--debit/credit wird automatisch über andere Route gesetzt (Zeiten)-->
-                        <button class="btn btn-lg btn-success" type="submit">Anlegen</button>
+						
+						
+						
+						<!-- ############################################################################
+						Umwandlung des Datum zu UnixTimeStamp ????
+						var unixtime = Date.parse("24-Nov-2009 17:57:35").getTime()/1000
+						##################################################################################-->
+                        <button class="btn btn-lg btn-success" type="submit" <!--onclick="changeDates()"-->>Anlegen</button>
                     </form>
                 </div>
 

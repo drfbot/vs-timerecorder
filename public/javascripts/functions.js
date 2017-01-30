@@ -9,6 +9,7 @@ window.onload=function(){
 };
 
 
+
 //===========================
 // Forms
 //=============================
@@ -39,53 +40,34 @@ function getCurrentStatus(name){
 //=======================================
 // Charts
 //=======================================
-/*
-function drawCharts(){
-		var inputData = $.ajax({
-        type: 'get',
-        url: 'http://localhost:3000/workers',
-		async: false
-    }).responseJSON;
 
-	var dataFormat ='"data": [';
-	
-for (var k = 0; k < inputData.length; k++) {
-	dataFormat += '{ "label" : " ' + inputData[k].name + '","value":"' +  inputData[k].credit + '"}';
-	
-	if (k < inputData.length-1){
-		dataFormat += ',';
-	}
-	
-}
-
-dataFormat += ']';
-
-	var stream = fs.createWriteStream("MyJsonfile.json");
-stream.once('open', function(fd) {
-  stream.write('{"chart": {"caption": "Monthly","xaxisname": "Month","yaxisname": "Revenue","numberprefix": "$", "showvalues": "1","animation": "1"},');
-  stream.write(dataFormat);
-  stream.write(',"trendlines": [{"line": [{"startvalue": "700000","istrendzone": "1","valueonright": "1","tooltext": "AYAN","endvalue": "900000","color": "009933","displayvalue": "Target","showontop": "1","thickness": "5"}]}]}');
-  stream.end();
-});
-	
-}
-*/
 function drawCharts() {
 		console.log("DRAWING CHARTS.....")
 		$.ajax({
         type: 'GET',
         url: 'http://localhost:3000/genstats'
     });
-    var ageGroupChart = new FusionCharts({
-        type: 'column2d',
+    var hourGroupChart = new FusionCharts({
+        type: 'column3d',
         renderAt: 'chart-container',
         width: '600',
         height: '400',
         dataFormat: 'jsonurl',
-        dataSource: 'MyJsonfile.json'
+        dataSource: 'hoursJsonfile.json'
     });
 		
-	ageGroupChart.render();
+	hourGroupChart.render();
+	
+	    var illnessGroupChart = new FusionCharts({
+        type: 'pie3d',
+        renderAt: 'chart-container2',
+        width: '600',
+        height: '400',
+        dataFormat: 'jsonurl',
+        dataSource: 'illnessJsonfile.json'
+    });
+	
+	illnessGroupChart.render();
 }
 
 
@@ -171,3 +153,63 @@ var dateien = evt.target.files; // FileList objekt
     // Die Datei einlesen und in eine Data-URL konvertieren
     reader.readAsDataURL(uploadDatei);
   }
+  
+  
+  //=========================================
+  // Frontend Time Display
+  //=========================================
+  
+  function getReadableHours(data){
+	date = new Date (data);
+  var hours = date.getHours();
+  var minutes = 0 + date.getMinutes();
+	  minutes =  minutes/60
+	  
+	  return parseFloat(hours+minutes , 3);
+  }
+  
+  function getReadableDate(data){
+	var date = new Date(parseInt(data));
+	console.log("DATUM:" + date)
+    var year = date.getFullYear();
+    var month = date.getMonth()+1;
+	console.log("MONAT" + month)
+    var day = date.getDate();
+	console.log("TAG" + day)
+    
+
+    return (day + "." + month + "." + year);
+	  
+  }
+  
+  
+  function changeButtonText(){
+	  
+	  if (document.getElementById("befUnbef").innerHTML === "unbefristet"){
+	  document.getElementById("befUnbef").innerHTML = "befristet";}
+	  else{
+	  document.getElementById("befUnbef").innerHTML = "unbefristet";
+	  document.getElementById("endDate").value = "0001-01-01"};
+  }
+  
+  
+  function changeDates(){
+	 changeStartDate();
+	 changeEndDate();
+	 
+	    
+  }
+  
+  function changeEndDate(){
+	  console.log("Ändere ENDE");
+	  var unixtime = Date.parse(document.getElementById("endDate").value+" 00:00:00").getTime()/1000;
+	  document.getElementById("endDate").value = unixtime;
+  }
+  
+  function changeStartDate(){
+	  console.log("Ändere Start");
+	  var unixtime = Date.parse(document.getElementById("startDate").value+" 00:00:00").getTime()/1000;
+	  document.getElementById("startDate").value = unixtime;
+  }
+  
+  

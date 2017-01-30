@@ -102,25 +102,32 @@ function getItemElement(username, name, gender, role, contract,credit, debit, va
     
     
   // add random number
+  console.log(name);
   $item.append( '<p class="name">' + name + '</p>' );
   //$item.append( '<p class="gender">' + gender + '</p>' );
   $item.append( '<p class="role">' + role + '</p>' );
-  $item.append( '<p class="contract">' + contract + '</p>' );
-  $item.append( '<p class="credit">' + credit + '</p>' );
+  
+  if (contract === "befristet"){
+	$item.append( '<p class="contract">' + contract + "  " + getReadableDate(endDate) + '</p>' );  
+  }
+  else{
+	 $item.append( '<p class="contract">' + contract + '</p>' ); 
+  }
+  $item.append( '<p class="credit">' + getReadableHours(credit) + '</p>' );
   $item.append( '<p class="debit">' + debit + '</p>' );
     
-  $item.append( '<p class="startDate">' + startDate + '</p>' );
-  $item.append( '<p class="endDate">' + endDate + '</p>' );
+  $item.append( '<p class="startDate">' + getReadableDate(startDate) + '</p>' );
+  $item.append( '<p class="endDate">' + getReadableDate(endDate) + '</p>' );
   $item.append( '<p class="vacation">' + vacation + '</p>' );
   $item.append( '<p class="illness">' + illness + '</p>' );
-  $item.append( '<label class="btn btn-primary active"><input type="radio" class="checkbox" autocomplete="off" name="bearbeiten" id="bearbeiten" value="bearbeiten">bearbeiten</label>');
+  $item.append( '<p class ="delete"><input type="submit" class="btn btn-primary active" autocomplete="off" name="l&ouml;schen" id="l&ouml;schen" value="l&ouml;schen"></p>');
     
-  if (vacationState === true){
-	$item.append( '<p class="vacationState">' + "im Urlaub" + '</p>' );  
+  if (vacationState != true && illnessState != true){
+	  $item.append( '<p class="vacationState">' + "Verf&uuml;gbar" + '</p>' );  
   }
   else
   {
-	$item.append( '<p class="vacationState">' + "Verf&uuml;gbar" + '</p>' );    
+	$item.append( '<p class="vacationState">' + "im Urlaub" + '</p>' ); 
   }
   if (illnessState === true){
   $item.append( '<p class="illnessState">' + "Krank" + '</p>' );

@@ -17,6 +17,17 @@ db.once("open", function (callback) {
   console.log("Connection succeeded.");
 });
 
+  
+  function getReadableHours(data){
+	date = new Date (data);
+  var hours = date.getHours();
+  var minutes = 0 + date.getMinutes();
+	  minutes =  minutes/60
+	  
+	  return parseFloat(hours+minutes , 3);
+  }
+
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
     res.render('index', {title: 'Express'});
@@ -38,7 +49,7 @@ router.route('/auth')
         Worker.findOne({username: req.body.username},function(err, workers){
 
             if(err) res.redirect('/');
-            console.log(workers);
+            
 
             bcrypt.compare(req.body.password, workers.passwd, function(err, pwBool) {
                 if(err)
@@ -184,26 +195,57 @@ router.route('/genstats')
 			res.send(err);
 		//res.json(workers);
 		
-		console.log("WRITING FILE....")
-	var dataFormat ='"data": [';
-	console.log("DATA ? "+ workers.length );
-for (var k = 0; k < workers.length; k++) {
-	dataFormat += '{ "label" : " ' + workers[k].name + '","value":"' +  workers[k].credit + '"}';
+		console.log("Generating FILE - 1....");
+		//========================================
+		// Generierung des ersten Json_Elements
+		var dataFormat ='"data": [';
+		console.log("DATA ? "+ workers.length );
+		for (var k = 0; k < workers.length; k++) {
+			dataFormat += '{ "label" : " ' + workers[k].name + '","value":"' +  getReadableHours(workers[k].credit) + '"}';
+		
+			if (k < workers.length-1){
+				dataFormat += ',';
+			}
 	
-	if (k < workers.length-1){
-		dataFormat += ',';
-	}
-	
-}
-
-dataFormat += ']';
-console.log("DIRNAME:" + __dirname);
-	var stream = fs.createWriteStream(__dirname + "/../public/content/MyJsonfile.json");
-stream.once('open', function(fd) {
-  stream.write('{"chart": {"caption": "Monthly","xaxisname": "Mitarbeiter","yaxisname": "Stunden","numberprefix": "Std:", "showvalues": "1","animation": "1"},');
-  stream.write(dataFormat);
-  stream.write(',"trendlines": [{"line": [{"showontop": "1","thickness": "5"}]}]}');
-  stream.end();
+		}
+		dataFormat += ']';
+		var stream = fs.createWriteStream(__dirname + "/../public/content/hoursJsonfile.json");
+		stream.once('open', function(fd) {
+		stream.write('{"chart": {"caption": "Aktuelle Arbeitszeiten","xaxisname": "Mitarbeiter","yaxisname": "Arbeitszeit in Stunden","numberprefix": "", "showvalues": "1","animation": "1"},');
+		stream.write(dataFormat);
+		stream.write(',"trendlines": [{"line": [{"showontop": "1","thickness": "5"}]}]}');
+		stream.end();
+		});
+		//========================================
+		// erstes Element fertig
+		
+		//========================================
+		// Generierung 2.Element
+		console.log("Generating FILE - 2....");
+		var dataFormata ='"data": [';
+		var Mann = 0;
+		var Frau = 0
+		for (var i = 0; i < workers.length; i++) {
+			
+			if (workers[i].gender === "male"){
+				Mann = Mann + 1;
+			}
+			else
+			{
+				Frau = Frau + 1;
+			}
+				
+		}
+		dataFormata += '{ "label" : " ' + "Maenner" + '","value":"' +  Mann + '"},';
+		dataFormata += '{ "label" : " ' + "Frauen" + '","value":"' +  Frau + '"}';
+		dataFormata += ']}';
+		var streamy = fs.createWriteStream(__dirname + "/../public/content/illnessJsonfile.json");
+		streamy.once('open', function(fd) {
+		streamy.write('{"chart": {"caption": "Auflistung der Krankheitstage" , "subCaption" : "nach Geschlecht", "numberPrefix": "", "showBorder": "0", "use3DLighting": "0", "enableSmartLabels": "0", "startingAngle": "310", "showLabels": "0", "showPercentValues": "1", "showLegend": "1","defaultCenterLabel": "Krankheitsverteilung", "centerLabel": "Krankheitstage $label: $value", "centerLabelBold": "1", "showTooltip": "0", "decimals": "0", "useDataPlotColorForLabels": "1", "theme": "fint"},');
+		streamy.write(dataFormata);
+		streamy.end();
+		//========================================
+		// Generierung 2.Element fertig
 		
 		
 		
