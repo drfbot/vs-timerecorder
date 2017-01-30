@@ -18,8 +18,8 @@ var workerSchema = new mongoose.Schema({
     , portrait: String
     , sessionToken: String
     , contract: String
-	, startDate: Number
-	, endDate: Number
+	, startDate: String
+	, endDate: String
     , debit: Number
     , credit: Number
     , vacation: Number

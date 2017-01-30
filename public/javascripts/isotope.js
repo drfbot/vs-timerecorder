@@ -108,7 +108,7 @@ function getItemElement(username, name, gender, role, contract,credit, debit, va
   $item.append( '<p class="role">' + role + '</p>' );
   
   if (contract === "befristet"){
-	$item.append( '<p class="contract">' + contract + "  " + getReadableDate(endDate) + '</p>' );  
+	$item.append( '<p class="contract">' + contract + "  " + endDate + '</p>' );  
   }
   else{
 	 $item.append( '<p class="contract">' + contract + '</p>' ); 
